@@ -1,13 +1,19 @@
 package by.paramonov.service;
 
-import by.paramonov.entity.ArgumentEntry;
+import by.paramonov.parser.ArgumentParser;
+import by.paramonov.parser.impl.CardArgumentParserImpl;
+import by.paramonov.parser.impl.ProductArgumentParserImpl;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ArgumentService {
-    public boolean isApplicable(String str) {
-        return false;
-    }
+    ArgumentParser apProduct = new ProductArgumentParserImpl();
+    ArgumentParser apCard = new CardArgumentParserImpl();
 
-    public ArgumentEntry parse(String string){
-        return new ArgumentEntry();
+    public Map<? extends Number, ? extends Number> parseInputArgument(String[] inoutArgs){
+        Map<Integer, Integer> parseMap = new HashMap<>();
+
+        return parseMap;
     }
 }
