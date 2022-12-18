@@ -1,10 +1,12 @@
 package by.paramonov.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class Check {
+public class Check extends BaseEntity{
     static final String CHECK_START = """
             \t\t\tCASH RECEIPT
             =========================================

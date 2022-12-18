@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ public class Order extends BaseEntity{
 
     static int quantityForDiscount = 6; // количество единиц товара, необходимых для получения акционной скидки
     private DiscountCard discountCard;
-    private double totalPrice;
-    private List<ArgumentEntry> inputOrder; // входной набор (id, quantity) args
-    private List<String[]> summaryOrderList; // List по позициям 1-QTY 2-DESCRIPTION 3-PRICE 4-TOTAL
+    private double totalPrice; // итоговая сумма
+    private Map<Product, Integer> inputOrder; // входной набор (Product, quantity) args
+    private List<String[]> summaryOrderList; // List по позициям 0-QTY 1-DESCRIPTION 2-PRICE 3-TOTAL
 }

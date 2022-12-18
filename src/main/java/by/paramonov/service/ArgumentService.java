@@ -1,27 +1,35 @@
 package by.paramonov.service;
 
 import by.paramonov.entity.ArgumentEntry;
+import by.paramonov.model.DiscountCard;
 import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArgumentService {
-    List<ArgumentParser> argumentParserList = new ArrayList<>();
+    List<ArgumentParser> argumentParserList;
 
     public ArgumentService() {
-        argumentParserList.add(new ProductArgumentParserImpl());
-        argumentParserList.add(new CardArgumentParserImpl());
+        argumentParserList = new ArrayList<>();
+        ArgumentParser productArgumentParser = new ProductArgumentParserImpl();
+        ArgumentParser cardArgumentParser = new CardArgumentParserImpl();
+        argumentParserList.add(productArgumentParser);
+        argumentParserList.add(cardArgumentParser);
     }
 
-    public List<ArgumentEntry> parseInputArguments(String[] inputArgs) {
-        List<ArgumentEntry> parseList = new LinkedList<>();
-        if (inputArgs.length != 0) {
-            Arrays.stream(inputArgs).forEach(el -> {
-
-            });
-        }
-        return parseList;
+    public ArgumentEntry parseArgumentForProduct(String str) {
+        int[] ints = Arrays.stream(str.split(ArgumentParser.regexForSmashArgs))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        return new ArgumentEntry(ints[0], ints[1]);
     }
+
+    public DiscountCard parseArgumentForCard(String str){
+        String[] split = str.split(ArgumentParser.regexForSmashArgs);
+        return DiscountCard.getDiscountCardById(Integer.parseInt(split[1]));
+    }
+
 }

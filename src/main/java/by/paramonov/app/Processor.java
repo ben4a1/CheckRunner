@@ -7,11 +7,11 @@ import by.paramonov.service.CheckService;
 import by.paramonov.service.OrderService;
 
 public class Processor {
-    private Check check;
-    private Order order;
-    private ArgumentService argumentService;
-    private CheckService checkService;
-    private OrderService orderService;
+    private final Check check;
+    private final Order order;
+    private final ArgumentService argumentService;
+    private final CheckService checkService;
+    private final OrderService orderService;
 
     public Processor(){
         check = new Check();
@@ -21,6 +21,6 @@ public class Processor {
         orderService = new OrderService();
     }
     public void start(String[] args){
-        order.setInputOrder(argumentService.parseInputArguments(args));
+
     }
 }

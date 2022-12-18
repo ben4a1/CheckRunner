@@ -3,17 +3,45 @@ package by.paramonov.service;
 import by.paramonov.entity.ArgumentEntry;
 import by.paramonov.entity.Order;
 import by.paramonov.model.DiscountCard;
+import by.paramonov.parser.ArgumentParser;
+import by.paramonov.parser.impl.CardArgumentParserImpl;
+import by.paramonov.parser.impl.ProductArgumentParserImpl;
 
 import java.util.*;
 
 public class OrderService {
-    public OrderService(){
+
+    private Order order;
+    ArgumentParser productArgumentParser;
+    ArgumentParser cardArgumentParser;
+
+    public OrderService() {
+        order = new Order();
+        productArgumentParser = new ProductArgumentParserImpl();
+        cardArgumentParser = new CardArgumentParserImpl();
     }
 
-//    public void setInputOrder(String[] inputArgs) {
-//        List<ArgumentEntry> inputMap = new LinkedList<>();
-//        if (inputArgs.length != 0) {
-//            Arrays.stream(inputArgs).forEach(x -> {
+
+    public void setInputOrderAndDiscountCard(String[] inputArgs) {
+        Map<Integer, Integer> inputMap = new HashMap<>();
+        if (inputArgs.length != 0) {
+            Arrays.stream(inputArgs).forEach(x -> {
+                if (productArgumentParser.isApplicable(x)) {
+                    ArgumentEntry argumentEntry = productArgumentParser.parseProduct(x);
+                    if (!inputMap.containsKey(argumentEntry.getProductId())) {
+                        inputMap.put(argumentEntry.getProductId(), argumentEntry.getProductQuantity());
+                    } else {
+                        int existingCount = inputMap.get(argumentEntry.getProductId());
+                        inputMap.put(argumentEntry.getProductId(), argumentEntry.getProductQuantity() + existingCount);
+                    }
+                } else if (cardArgumentParser.isApplicable(x)) {
+                    order.setDiscountCard(cardArgumentParser.parseCard(x));
+                }
+
+
+            });
+        }
+    }
 //                String[] split = x.split("-");
 //                if (Character.isDigit(split[0].charAt(0))) {
 //                    int tempId = Integer.parseInt(split[0]);
@@ -21,7 +49,7 @@ public class OrderService {
 //                    if (!inputMap.containsKey(tempId)) {
 //                        inputMap.put(tempId, tempQuantity);
 //                    } else {
-//                        int existingCount = inputMap.get(tempId);
+//                        int c = inputMap.get(tempId);
 //                        inputMap.put(tempId, tempQuantity + existingCount);
 //                    }
 //                } else if (split[0].equalsIgnoreCase("card")) {
@@ -30,9 +58,9 @@ public class OrderService {
 //            });
 //            order.setInputOrder(inputMap);
 //        }
+
+
+//    public void setSummaryOrderList(Order order){
+//
 //    }
-
-    public void setSummaryOrderList(Order order){
-
-    }
 }
