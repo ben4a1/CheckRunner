@@ -1,7 +1,7 @@
 package by.paramonov.service;
 
-import by.paramonov.entity.DiscountCard;
 import by.paramonov.entity.Order;
+import by.paramonov.model.DiscountCard;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +16,6 @@ public class OrderService {
     public void setInputOrder(String[] inputArgs) {
         Map<Integer, Integer> inputMap = new HashMap<>();
         if (inputArgs.length != 0) {
-            DiscountCard tempDiscountCard = new DiscountCard();
             Arrays.stream(inputArgs).forEach(x -> {
                 String[] split = x.split("-");
                 if (Character.isDigit(split[0].charAt(0))) {
@@ -29,13 +28,11 @@ public class OrderService {
                         inputMap.put(tempId, tempQuantity + existingCount);
                     }
                 } else if (split[0].equalsIgnoreCase("card")) {
-                    tempDiscountCard.setCardId(Long.parseLong(split[1]));
-                    tempDiscountCard.setCardHolder(DiscountCard.STATIC_CARD_HOLDER);
-                    tempDiscountCard.setDiscountValue(DiscountCard.STATIC_CARD_DISCOUNT);
+                    order.setDiscountCard(DiscountCard.getDiscountCardById(Integer.parseInt(split[1])));
                 }
             });
             order.setInputOrder(inputMap);
-            order.setDiscountCard(tempDiscountCard);
+
         }
     }
 

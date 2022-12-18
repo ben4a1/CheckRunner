@@ -8,7 +8,7 @@ public class CheckRunner
 {
     public static void main( String[] args )
     {
-        String[] argsForDebug = new String[]{"3-5", "4-25", "1-4", "2-5", "card-14239999"};
+        String[] argsForDebug = new String[]{"3-5", "4-25", "1-4", "2-5", "card-2"};
         Order order = new Order();
         OrderService orderService = new OrderService(order);
         orderService.setInputOrder(argsForDebug);

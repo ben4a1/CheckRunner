@@ -1,6 +1,7 @@
 package by.paramonov.entity;
 
 
+import by.paramonov.model.DiscountCard;
 import lombok.Getter;
 import lombok.Setter;
 

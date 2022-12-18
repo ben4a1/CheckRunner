@@ -13,6 +13,10 @@ public class CheckService {
     private static final String OUTPUT_CHECK_FILE_PATH = "src/main/resources/check.txt";
     private static final File INPUT_PRICE_FILE = new File(INPUT_PRICE_FILE_PATH);
     static final File OUTPUT_CHECK_FILE = new File(OUTPUT_CHECK_FILE_PATH);
+
+    /**
+     * Создание прайс-листа из файла
+     */
     static List<Product> priceListFromFile = new ArrayList<>();
 
     static {
@@ -37,7 +41,6 @@ public class CheckService {
             throw new RuntimeException(e);
         }
     }
-
 
 
 }

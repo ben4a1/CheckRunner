@@ -6,11 +6,12 @@ import by.paramonov.parser.ArgumentParser;
 public class ProductArgumentParserImpl implements ArgumentParser {
     @Override
     public boolean isApplicable(String str) {
-        return false;
+        return Character.isDigit(str.charAt(0));
     }
 
     @Override
     public ArgumentEntry parse(String string) {
+
         return null;
     }
 }

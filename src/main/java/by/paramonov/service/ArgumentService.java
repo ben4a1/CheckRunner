@@ -4,16 +4,24 @@ import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ArgumentService {
-    ArgumentParser apProduct = new ProductArgumentParserImpl();
-    ArgumentParser apCard = new CardArgumentParserImpl();
+    List<ArgumentParser> argumentParserList = new ArrayList<>();
 
-    public Map<? extends Number, ? extends Number> parseInputArgument(String[] inoutArgs){
+    public ArgumentService() {
+        argumentParserList.add(new ProductArgumentParserImpl());
+        argumentParserList.add(new CardArgumentParserImpl());
+    }
+
+    public Map<? extends Number, ? extends Number> parseInputArgument(String[] inputArgs) {
         Map<Integer, Integer> parseMap = new HashMap<>();
+        if (inputArgs.length != 0) {
 
+        }
         return parseMap;
     }
 }
