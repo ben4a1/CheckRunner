@@ -1,13 +1,11 @@
 package by.paramonov.service;
 
+import by.paramonov.entity.ArgumentEntry;
 import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ArgumentService {
     List<ArgumentParser> argumentParserList = new ArrayList<>();
@@ -17,11 +15,13 @@ public class ArgumentService {
         argumentParserList.add(new CardArgumentParserImpl());
     }
 
-    public Map<? extends Number, ? extends Number> parseInputArgument(String[] inputArgs) {
-        Map<Integer, Integer> parseMap = new HashMap<>();
+    public List<ArgumentEntry> parseInputArguments(String[] inputArgs) {
+        List<ArgumentEntry> parseList = new LinkedList<>();
         if (inputArgs.length != 0) {
+            Arrays.stream(inputArgs).forEach(el -> {
 
+            });
         }
-        return parseMap;
+        return parseList;
     }
 }

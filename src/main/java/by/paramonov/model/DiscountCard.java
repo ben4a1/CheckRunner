@@ -35,6 +35,7 @@ public enum DiscountCard {
                 return dc;
             }
         }
+        System.out.printf("Discount card with %d is not exists yet", id);
         return null;
     }
 }

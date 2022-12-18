@@ -13,23 +13,24 @@ public class CheckService {
     private static final String OUTPUT_CHECK_FILE_PATH = "src/main/resources/check.txt";
     private static final File INPUT_PRICE_FILE = new File(INPUT_PRICE_FILE_PATH);
     static final File OUTPUT_CHECK_FILE = new File(OUTPUT_CHECK_FILE_PATH);
+    static String regexForPriceListFromFile = " ";
 
     /**
-     * Создание прайс-листа из файла
+     * Инициализация прайс-листа из файла 'src/main/resources/price.txt'.
      */
-    static List<Product> priceListFromFile = new ArrayList<>();
+    public static List<Product> priceListFromFile = new ArrayList<>();
 
     static {
         try {
             FileReader fr = new FileReader(INPUT_PRICE_FILE);
             Scanner scanner = new Scanner(fr);
             if (scanner.hasNextLine()) {
-                String[] split = scanner.nextLine().split(" ");
+                String[] split = scanner.nextLine().split(regexForPriceListFromFile);
                 int id = Integer.parseInt(split[0]);
                 String[] priceAndDescription = new String[]{split[1], split[2]};
                 priceListFromFile.add(new Product(id, split[2], Double.parseDouble(split[1])));
                 while (scanner.hasNextLine()) {
-                    split = scanner.nextLine().split(" ");
+                    split = scanner.nextLine().split(regexForPriceListFromFile);
                     id = Integer.parseInt(split[0]);
                     priceAndDescription[0] = split[1];
                     priceAndDescription[1] = split[2];
@@ -41,6 +42,4 @@ public class CheckService {
             throw new RuntimeException(e);
         }
     }
-
-
 }

@@ -4,7 +4,8 @@ import by.paramonov.entity.ArgumentEntry;
 
 public interface ArgumentParser {
 
-    String regex = "-";
+    String regexForSmashArgs = "-";
+
     boolean isApplicable(String str);
-    ArgumentEntry parse(String string);
+
 }

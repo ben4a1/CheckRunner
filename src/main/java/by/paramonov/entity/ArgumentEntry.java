@@ -6,12 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ArgumentEntry {
-    private String[] inputArgs;
+    private int productId;
+    private int productQuantity;
 
     public ArgumentEntry() {
     }
 
-    public ArgumentEntry(String[] inputArgs) {
-        this.inputArgs = inputArgs;
-    }
 }
