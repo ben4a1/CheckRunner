@@ -17,6 +17,6 @@ public class Order extends BaseEntity{
     static int quantityForDiscount = 6; // количество единиц товара, необходимых для получения акционной скидки
     private DiscountCard discountCard;
     private double totalPrice; // итоговая сумма
-    private Map<Product, Integer> inputOrder; // входной набор (Product, quantity) args
+    private Map<Integer, Integer> inputOrder; // входной набор (Product, quantity) args
     private List<String[]> summaryOrderList; // List по позициям 0-QTY 1-DESCRIPTION 2-PRICE 3-TOTAL
 }

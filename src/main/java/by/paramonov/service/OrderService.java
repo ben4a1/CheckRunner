@@ -2,7 +2,6 @@ package by.paramonov.service;
 
 import by.paramonov.entity.ArgumentEntry;
 import by.paramonov.entity.Order;
-import by.paramonov.model.DiscountCard;
 import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;
@@ -11,7 +10,7 @@ import java.util.*;
 
 public class OrderService {
 
-    private Order order;
+    private final Order order;
     ArgumentParser productArgumentParser;
     ArgumentParser cardArgumentParser;
 
@@ -38,26 +37,10 @@ public class OrderService {
                     order.setDiscountCard(cardArgumentParser.parseCard(x));
                 }
 
-
             });
+            order.setInputOrder(inputMap);
         }
     }
-//                String[] split = x.split("-");
-//                if (Character.isDigit(split[0].charAt(0))) {
-//                    int tempId = Integer.parseInt(split[0]);
-//                    int tempQuantity = Integer.parseInt(split[1]);
-//                    if (!inputMap.containsKey(tempId)) {
-//                        inputMap.put(tempId, tempQuantity);
-//                    } else {
-//                        int c = inputMap.get(tempId);
-//                        inputMap.put(tempId, tempQuantity + existingCount);
-//                    }
-//                } else if (split[0].equalsIgnoreCase("card")) {
-//                    order.setDiscountCard(DiscountCard.getDiscountCardById(Integer.parseInt(split[1])));
-//                }
-//            });
-//            order.setInputOrder(inputMap);
-//        }
 
 
 //    public void setSummaryOrderList(Order order){
