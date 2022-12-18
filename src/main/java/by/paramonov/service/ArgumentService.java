@@ -1,13 +1,12 @@
 package by.paramonov.service;
 
-import by.paramonov.entity.ArgumentEntry;
+import by.paramonov.model.ArgumentEntry;
 import by.paramonov.model.DiscountCard;
 import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ArgumentService {
     List<ArgumentParser> argumentParserList;

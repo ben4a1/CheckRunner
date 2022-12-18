@@ -1,6 +1,6 @@
 package by.paramonov.service;
 
-import by.paramonov.entity.ArgumentEntry;
+import by.paramonov.model.ArgumentEntry;
 import by.paramonov.entity.Order;
 import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
@@ -21,7 +21,7 @@ public class OrderService {
     }
 
 
-    public void setInputOrderAndDiscountCard(String[] inputArgs) {
+    public void setInputOrderAndDiscountCard(String[] inputArgs, Order order) {
         Map<Integer, Integer> inputMap = new HashMap<>();
         if (inputArgs.length != 0) {
             Arrays.stream(inputArgs).forEach(x -> {
@@ -42,8 +42,4 @@ public class OrderService {
         }
     }
 
-
-//    public void setSummaryOrderList(Order order){
-//
-//    }
 }

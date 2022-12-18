@@ -1,6 +1,6 @@
 package by.paramonov.parser;
 
-import by.paramonov.entity.ArgumentEntry;
+import by.paramonov.model.ArgumentEntry;
 import by.paramonov.model.DiscountCard;
 
 public interface ArgumentParser {
@@ -9,7 +9,6 @@ public interface ArgumentParser {
 
     boolean isApplicable(String str);
 
-    ArgumentEntry parseProduct(String str);
+    ArgumentEntry parse(String str);
 
-    DiscountCard parseCard(String str);
 }
