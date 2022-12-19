@@ -5,7 +5,7 @@ import by.paramonov.service.OrderService;
 
 public class CheckRunner {
     public static void main(String[] args) {
-        String[] argsForDebug = new String[]{"3-5", "4-25", "1-4", "2-5", "card-2"};
+        String[] argsForDebug = new String[]{"3-5", "8-25", "1-4", "2-5", "card-2"};
         System.out.println(OrderService.priceListFromFile.get(6));
 
 

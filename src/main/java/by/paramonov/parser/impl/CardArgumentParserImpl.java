@@ -4,7 +4,6 @@ import by.paramonov.model.incomearguments.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
 import by.paramonov.model.incomearguments.CardEntry;
 import by.paramonov.parser.ArgumentParser;
-import lombok.experimental.PackagePrivate;
 
 public class CardArgumentParserImpl implements ArgumentParser {
 
