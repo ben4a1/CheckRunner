@@ -1,8 +1,7 @@
-package by.paramonov.model;
+package by.paramonov.model.incomearguments;
 
-import lombok.Getter;
-import lombok.Setter;
 
+import by.paramonov.model.TypeOfArgument;
 
 public abstract class ArgumentEntry  {
     TypeOfArgument typeOfArgument;

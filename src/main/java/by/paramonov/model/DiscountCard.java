@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.util.Arrays;
 
 /**
- * Класс скидочной карты
+ * Класс (enum) скидочной карты
  */
 
 public enum DiscountCard {
@@ -16,11 +16,8 @@ public enum DiscountCard {
     GOLD(3, "good buyer", 0.05),
     PLATINUM(4, "perfect buyer", 0.07);
 
-    @Getter
     private final long cardId;
-    @Getter
     private final String cardHolder;
-    @Getter
     private final double discountValue;
 
     DiscountCard(long cardId, String cardHolder, double discountValue) {

@@ -1,11 +1,10 @@
 package by.paramonov.parser;
 
-import by.paramonov.model.ArgumentEntry;
+import by.paramonov.model.incomearguments.ArgumentEntry;
 
 public interface ArgumentParser {
 
     String regexForSmashArgs = "-";
-
 
     boolean isApplicable(String str);
 

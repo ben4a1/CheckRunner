@@ -1,13 +1,14 @@
-package by.paramonov.model.ext;
+package by.paramonov.model.incomearguments;
 
-import by.paramonov.model.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
-import lombok.Data;
+import lombok.Getter;
 
+@Getter
 public class ProductEntry extends ArgumentEntry {
 
-    private int productId;
-    private int productQuantity;
+
+    private final int productId;
+    private final int productQuantity;
 
     public ProductEntry(TypeOfArgument type, int productId, int productQuantity) {
         super(type);

@@ -1,12 +1,14 @@
-package by.paramonov.model.ext;
+package by.paramonov.model.incomearguments;
 
-import by.paramonov.model.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
+import lombok.Getter;
 
 public class CardEntry extends ArgumentEntry {
-    private int cardNumber;
+    @Getter
+    private final int cardNumber;
 
     public CardEntry(TypeOfArgument type, int number) {
         super(type);
+        this.cardNumber = number;
     }
 }

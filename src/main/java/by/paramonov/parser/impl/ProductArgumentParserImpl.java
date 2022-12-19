@@ -1,8 +1,8 @@
 package by.paramonov.parser.impl;
 
-import by.paramonov.model.ArgumentEntry;
+import by.paramonov.model.incomearguments.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
-import by.paramonov.model.ext.ProductEntry;
+import by.paramonov.model.incomearguments.ProductEntry;
 import by.paramonov.parser.ArgumentParser;
 
 import java.util.Arrays;
