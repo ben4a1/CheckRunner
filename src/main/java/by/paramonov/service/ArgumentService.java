@@ -16,6 +16,7 @@ public class ArgumentService {
         argumentParserList.add(new CardArgumentParserImpl());
     }
 
+    //TODO argumentParserList.findFirst()
     public List<ArgumentEntry> parseInputArguments(String[] inputArgs) {
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
         Arrays.stream(inputArgs).forEach(argument ->

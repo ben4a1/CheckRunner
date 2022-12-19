@@ -9,6 +9,7 @@ import java.util.Arrays;
  * Класс (enum) скидочной карты
  */
 
+@Getter
 public enum DiscountCard {
 
     WOOD(1, "novice buyer", 0.015),
