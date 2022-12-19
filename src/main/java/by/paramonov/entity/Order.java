@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.String.format;
+
 @Getter
 @Setter
 public class Order extends BaseEntity {
@@ -20,9 +22,11 @@ public class Order extends BaseEntity {
     static final String MARKET_ADDRESS = "1, Lake street, Somewhereville";
     static final String MARKET_PHONE_NUMBER = "Tel : 321-654-0011";
     static final String CASHIER = "CASHIER :  #2022";
-    static final String START_FIRST_LINE_OF_END = "TAXABLE TOT.";
-    static final String START_SECOND_LINE_OF_END = String.format("VAT%f%%", Order.vat * 100);
+    static final String START_FIRST_LINE_OF_THE_END = "TAXABLE TOT.";
+    static final String START_THIRD_LINE_OF_THE_END = "TOTAL DISCOUNT";
+    private static final String START_FOURTH_LINE_OF_THE_END = "TOTAL";
     static double vat = 0.2; // НДС 20%
+    static final String START_SECOND_LINE_OF_THE_END = format("VAT%2.2f%%", (Order.vat * 100));
     public static double quantityDiscount = 0.1; // скидка 10% если товар акционный и его количество в заказе более quantityForDiscount
 
     public static int quantityForDiscount = 6; // количество единиц товара, необходимых для получения акционной скидки
@@ -87,8 +91,8 @@ public class Order extends BaseEntity {
         summaryOrderList.forEach(position -> {
             String tempQTY = position[0];
             String tempDescription = position[1];
-            String tempPrice = String.format("$%s", position[2]);
-            String tempTotal = String.format("$%s", position[3]);
+            String tempPrice = format("$%s", position[2]);
+            String tempTotal = format("$%s", position[3]);
             output.append("\n")
                     .append(tempQTY)
                     .append(" ".repeat(5 - tempQTY.length()))
@@ -107,9 +111,21 @@ public class Order extends BaseEntity {
                 .append(emptyLine)
                 .append("\n")
                 .append(plusLine).append("\n")
-                .append(START_FIRST_LINE_OF_END)
-                .append(" ".repeat(lineLength - START_FIRST_LINE_OF_END.length() - String.format("$%.2f", totalPrice).length()))
-                .append(String.format("$%.2f", totalPrice));
+                .append(START_FIRST_LINE_OF_THE_END)
+                .append(" ".repeat(lineLength - START_FIRST_LINE_OF_THE_END.length() - format("$%.2f", totalPrice).length()))
+                .append(format("$%.2f", totalPrice))
+                .append("\n")
+                .append(START_SECOND_LINE_OF_THE_END)
+                .append(" ".repeat(lineLength - START_SECOND_LINE_OF_THE_END.length() - format("$%.2f", totalPrice * vat).length() - 1))
+                .append(format("$%.2f", totalPrice * vat))
+                .append("\n")
+                .append(START_THIRD_LINE_OF_THE_END)
+                .append(" ".repeat(lineLength - START_THIRD_LINE_OF_THE_END.length() - format("$%.2f", totalDiscount).length() - 2))
+                .append(format("$%.2f", totalDiscount))
+                .append("\n")
+                .append(START_FOURTH_LINE_OF_THE_END)
+                .append(" ".repeat(lineLength - START_FOURTH_LINE_OF_THE_END.length() - format("$%.2f", totalPrice).length()))
+                .append(format("$%.2f", totalPrice)); //TODO
         return output.toString();
     }
 

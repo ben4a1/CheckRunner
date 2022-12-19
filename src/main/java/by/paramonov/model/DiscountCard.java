@@ -12,10 +12,10 @@ import java.util.Arrays;
 @Getter
 public enum DiscountCard {
 
-    WOOD(1, "novice buyer", 0.015),
-    SILVER(2, "normal buyer", 0.03),
-    GOLD(3, "good buyer", 0.05),
-    PLATINUM(4, "perfect buyer", 0.07);
+    WOOD(1, "novice buyer", 0.015d),
+    SILVER(2, "normal buyer", 0.03d),
+    GOLD(3, "good buyer", 0.05d),
+    PLATINUM(4, "perfect buyer", 0.07d);
 
     private final long cardId;
     private final String cardHolder;
