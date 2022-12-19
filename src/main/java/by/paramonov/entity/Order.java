@@ -20,6 +20,8 @@ public class Order extends BaseEntity {
     static final String MARKET_ADDRESS = "1, Lake street, Somewhereville";
     static final String MARKET_PHONE_NUMBER = "Tel : 321-654-0011";
     static final String CASHIER = "CASHIER :  #2022";
+    static final String START_FIRST_LINE_OF_END = "TAXABLE TOT.";
+    static final String START_SECOND_LINE_OF_END = String.format("VAT%f%%", Order.vat * 100);
     static double vat = 0.2; // НДС 20%
     public static double quantityDiscount = 0.1; // скидка 10% если товар акционный и его количество в заказе более quantityForDiscount
 
@@ -38,57 +40,77 @@ public class Order extends BaseEntity {
 
     @Override
     public String toString() {
-
+        int qtyLength = summaryOrderList.stream().mapToInt(x -> x[0].length()).max().getAsInt();
         int priceLength = summaryOrderList.stream().mapToInt(x -> x[2].length()).max().getAsInt();
         int descriptionLength = summaryOrderList.stream().mapToInt(x -> x[1].length()).max().getAsInt();
         int totalLength = summaryOrderList.stream().mapToInt(x -> x[3].length()).max().getAsInt();
-        int lineLength = 6 + priceLength + descriptionLength + totalLength; // 6 - по 2 пробела после каждого из 3-х первых столбцов
+        int lineLength = 12 + qtyLength + priceLength + descriptionLength + totalLength;
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+        String dateStr = dateFormat.format(date);
+        String timeStr = timeFormat.format(date);
         String plusLine = "+".repeat(lineLength + 2);
         String emptyLine = " ".repeat(lineLength);
+        String whiteSpaceAndPlusLine = " ".repeat(5) + "+" + " ".repeat(descriptionLength + 2) + "+" + " ".repeat(priceLength + 2) + "+";
         String cashReceiptLine = emptyLine.substring(0, lineLength / 2 - CASH_RECEIPT.length() / 2) + CASH_RECEIPT;
-        String output = plusLine
-                        + "\n" + cashReceiptLine;
+        StringBuilder output = new StringBuilder(plusLine
+                                                 + "\n" + cashReceiptLine);
         String marketNameLine = emptyLine.substring(0, lineLength / 2 - MARKET_NAME.length() / 2) + MARKET_NAME;
-        output += "\n" + marketNameLine;
+        output.append("\n").append(marketNameLine);
         String marketAddressLine = emptyLine.substring(0, lineLength / 2 - MARKET_ADDRESS.length() / 2) + MARKET_ADDRESS;
-        output += "\n" + marketAddressLine;
+        output.append("\n").append(marketAddressLine);
         String marketPhoneNumberLine = emptyLine.substring(0, lineLength / 2 - MARKET_PHONE_NUMBER.length() / 2) + MARKET_PHONE_NUMBER;
-        output += "\n" + marketPhoneNumberLine;
-        output += "\n" + CASHIER;
-        String dateStr = dateFormat.format(date);
-        output += emptyLine.substring(0, lineLength - CASHIER.length() - dateStr.length()) + dateStr;
-        String timeStr = timeFormat.format(date);
-        output += "\n" + emptyLine.substring(timeStr.length()) + timeStr;
+        output.append("\n").append(marketPhoneNumberLine);
+        output.append("\n" + CASHIER);
+        output.append(emptyLine, 0, lineLength - CASHIER.length() - dateStr.length()).append(dateStr);
+        output.append("\n")
+                .append(emptyLine.substring(timeStr.length()))
+                .append(timeStr)
+                .append("\n")
+                .append(plusLine)
+                .append("\n" + "QTY") // Верхняя граница построчного представления чека/заказа
+                .append(" ".repeat(2))
+                .append("+").append(" DESCRIPTION")
+                .append(" ".repeat(descriptionLength - 10))
+                .append("+")
+                .append(" PRICE")
+                .append(" ".repeat(priceLength - 4))
+                .append("+")
+                .append(" TOTAL")
+                .append(" ".repeat(totalLength - 4))
+                .append("\n")
+                .append(plusLine)
+                .append("\n")
+                .append(whiteSpaceAndPlusLine);
+        // Построчное представления чека/заказа
+        summaryOrderList.forEach(position -> {
+            String tempQTY = position[0];
+            String tempDescription = position[1];
+            String tempPrice = String.format("$%s", position[2]);
+            String tempTotal = String.format("$%s", position[3]);
+            output.append("\n")
+                    .append(tempQTY)
+                    .append(" ".repeat(5 - tempQTY.length()))
+                    .append("+").append(" ")
+                    .append(tempDescription)
+                    .append(" ".repeat(descriptionLength - tempDescription.length() + 1))
+                    .append("+").append(" ")
+                    .append(tempPrice)
+                    .append(" ".repeat(priceLength - tempPrice.length() + 1))
+                    .append("+").append(" ")
+                    .append(tempTotal);
 
-        output += "\n" + plusLine;
-        output += "\n" + "QTY" + " ".repeat(2) + "+"
-                  + " DESCRIPTION" + " ".repeat(descriptionLength - 10) + "+"
-                  + " PRICE" + " ".repeat(priceLength - 4) + "+"
-                  + " TOTAL" + " ".repeat(totalLength - 4);
-        output += "\n" + plusLine;
-
-//        StringBuilder output = new StringBuilder(FIRST_LINE);
-//        for (String[] position : summaryOrderList) {
-//            StringBuilder tempDescription = new StringBuilder(position[1]);
-//            String tempString = "";
-//            if (position[1].length() < descriptionLength) {
-//                String white = " ".repeat(descriptionLength - position[1].length());
-//                tempDescription.append(white);
-//            } else if (position[1].length() > descriptionLength) {
-//                String substring = tempDescription.substring(0, descriptionLength);
-//                tempDescription.setLength(0);
-//                tempDescription.append(substring);
-//            }
-//            tempString = String.format("%n%s" + "\t%s" + "\t\t$%s" + "\t\t$%s", position[0], tempDescription, position[2], position[3]);
-//
-//
-//            output.append(tempString);
-//        }
-//        return output.toString();
-        return output;
+        });
+        // нижняя граница построчного представления чека/заказа
+        output.append("\n")
+                .append(emptyLine)
+                .append("\n")
+                .append(plusLine).append("\n")
+                .append(START_FIRST_LINE_OF_END)
+                .append(" ".repeat(lineLength - START_FIRST_LINE_OF_END.length() - String.format("$%.2f", totalPrice).length()))
+                .append(String.format("$%.2f", totalPrice));
+        return output.toString();
     }
 
 }
