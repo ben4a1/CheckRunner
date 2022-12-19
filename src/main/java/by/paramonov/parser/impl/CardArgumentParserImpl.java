@@ -1,7 +1,8 @@
 package by.paramonov.parser.impl;
 
 import by.paramonov.model.ArgumentEntry;
-import by.paramonov.model.DiscountCard;
+import by.paramonov.model.TypeOfArgument;
+import by.paramonov.model.ext.CardEntry;
 import by.paramonov.parser.ArgumentParser;
 
 public class CardArgumentParserImpl implements ArgumentParser {
@@ -11,9 +12,9 @@ public class CardArgumentParserImpl implements ArgumentParser {
         return str.toLowerCase().startsWith("card");
     }
 
-    public ArgumentEntry parse(String str) {
+    public <T extends ArgumentEntry> ArgumentEntry parse(String str) {
         String[] split = str.split(regexForSmashArgs);
-        return DiscountCard.getDiscountCardById(Integer.parseInt(split[1]));
+        return new CardEntry(TypeOfArgument.CARD, Integer.parseInt(split[1]));
     }
 
 }
