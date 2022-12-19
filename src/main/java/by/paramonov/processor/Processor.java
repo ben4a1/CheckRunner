@@ -13,6 +13,7 @@ public class Processor {
     }
     public void process(String[] args){
         orderService.setInputOrderAndDiscountCard(args, order);
-
+        orderService.setSummaryOrderList(order);
+        orderService.printCheck(order);
     }
 }

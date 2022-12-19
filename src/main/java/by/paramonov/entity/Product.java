@@ -1,7 +1,9 @@
 package by.paramonov.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true) //TODO for what?
 @Data
 public class Product extends BaseEntity{
     private String description;

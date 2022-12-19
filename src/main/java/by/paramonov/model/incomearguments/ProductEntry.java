@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 public class ProductEntry extends ArgumentEntry {
 
-
     private final int productId;
     private final int productQuantity;
 

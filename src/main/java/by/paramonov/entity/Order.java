@@ -13,6 +13,9 @@ import java.util.Map;
 public class Order extends BaseEntity {
     static final String CHECK_START = """
             \t\t\tCASH RECEIPT
+            SUPERMEGAPUPERMARKET "INFINITY"
+            1, Lake street, Somewhereville
+            Tel : 321-654-0011\t\tDATE: 
             =========================================
             QTY\tDESCRIPTION\t\t\tPRICE\t\tTOTAL""";
     static double vat = 0.2; // НДС 20%
@@ -29,5 +32,15 @@ public class Order extends BaseEntity {
 
     public void setTotalDiscount(){
         totalDiscount = discountValueCard + discountValuePromotion;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder(CHECK_START);
+        for (String[] position : summaryOrderList) {
+            String tempString = String.format("%n%s" + "\t%s" + "\t\t\t\t%s" + "\t\t%s", position[0], position[1], position[2], position[3]);
+            output.append(tempString);
+        }
+        return output.toString();
     }
 }

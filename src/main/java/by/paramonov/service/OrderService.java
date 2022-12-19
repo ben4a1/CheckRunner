@@ -95,5 +95,10 @@ public class OrderService {
             order.setDiscountValueCard(order.getTotalPrice() * order.getDiscountCard().getDiscountValue());
         }
         order.setTotalDiscount();
+        order.setSummaryOrderList(summOrderList);
+    }
+
+    public void printCheck(Order order){
+        System.out.println(order);
     }
 }
