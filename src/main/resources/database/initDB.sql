@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS products
+DROP TABLE IF EXISTS products, cards;
+
+CREATE TABLE products
 (
     id    BIGSERIAL PRIMARY KEY ,
     description VARCHAR NOT NULL ,
@@ -6,7 +8,7 @@ CREATE TABLE IF NOT EXISTS products
     is_promotion BOOLEAN  NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS cards
+CREATE TABLE cards
 (
     id    BIGSERIAL PRIMARY KEY ,
     gradation VARCHAR NOT NULL ,

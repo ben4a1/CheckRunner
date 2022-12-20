@@ -1,0 +1,1 @@
+Перед первым запуском в application.properties убрать комментирование spring.sql.init.data-locations=classpath*:database/populateDB.sql
