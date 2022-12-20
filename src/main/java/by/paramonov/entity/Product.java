@@ -1,10 +1,20 @@
 package by.paramonov.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "products")
+@AttributeOverride(name = "id", column = @Column(name = "product_id"))
 @EqualsAndHashCode(callSuper = true) //TODO for what?
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product extends BaseEntity{
     private String description;
     private double price;

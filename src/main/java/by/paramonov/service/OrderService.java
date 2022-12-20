@@ -11,30 +11,18 @@ import by.paramonov.price.impl.PriceReaderFromFileImpl;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.File;
 import java.util.*;
 
 public class OrderService {
 
-    private static final String OUTPUT_CHECK_FILE_PATH = "src/main/resources/check.txt";
-
-    static final File OUTPUT_CHECK_FILE = new File(OUTPUT_CHECK_FILE_PATH);
-
-
-    /**
-     * Инициализация прайс-листа из файла 'src/main/resources/price.txt'.
-     */
     @Getter
     @Setter
     private static List<Product> priceList = new ArrayList<>();
 
-    private final ArgumentService argumentService;
     PriceReader priceReader;
-
 
     public OrderService() {
         priceReader = new PriceReaderFromFileImpl();
-        argumentService = new ArgumentService();
     }
 
     public Order createOrder(List<ArgumentEntry> argumentEntryList) {
@@ -83,7 +71,4 @@ public class OrderService {
         order.setSummaryOrderList(summOrderList);
     }
 
-    public void printCheck(Order order){
-        System.out.println(order);
-    }
 }

@@ -1,7 +1,6 @@
 package by.paramonov.processor;
 
 import by.paramonov.checkprinter.CheckPrinter;
-import by.paramonov.checkprinter.impl.ConsoleCheckPrinter;
 import by.paramonov.checkprinter.impl.FileCheckPrinter;
 import by.paramonov.entity.Order;
 import by.paramonov.model.incomeentries.ArgumentEntry;
