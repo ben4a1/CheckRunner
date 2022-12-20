@@ -27,6 +27,9 @@ dependencies {
 
     implementation ("org.springframework.boot:spring-boot-starter-data-rest:2.7.5") //Для создания REST контроллера
 
+    implementation ("javax.xml.bind:jaxb-api:2.3.0")
+
+
     testImplementation ("org.springframework.boot:spring-boot-starter-test:2.7.5") //Для сервера Tomcat
 }
 

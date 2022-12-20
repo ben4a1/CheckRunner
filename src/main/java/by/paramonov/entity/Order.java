@@ -4,6 +4,7 @@ package by.paramonov.entity;
 import by.paramonov.model.DiscountCard;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
+@Component
 @Getter
 @Setter
 public class Order extends BaseEntity {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PriceReaderFromFileImpl implements PriceReader {
+public class FilePriceReader implements PriceReader {
 
     private static final String INPUT_PRICE_FILE_PATH = "src/main/resources/price.txt";
     private static final File INPUT_PRICE_FILE = new File(INPUT_PRICE_FILE_PATH);

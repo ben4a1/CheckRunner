@@ -7,12 +7,14 @@ import by.paramonov.entity.Order;
 import by.paramonov.model.incomeentries.CardEntry;
 import by.paramonov.model.incomeentries.ProductEntry;
 import by.paramonov.price.PriceReader;
-import by.paramonov.price.impl.PriceReaderFromFileImpl;
+import by.paramonov.price.impl.DbPriceReader;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class OrderService {
 
     @Getter
@@ -21,8 +23,8 @@ public class OrderService {
 
     PriceReader priceReader;
 
-    public OrderService() {
-        priceReader = new PriceReaderFromFileImpl();
+    public OrderService(DbPriceReader dbPriceReader) {
+        priceReader = dbPriceReader;
     }
 
     public Order createOrder(List<ArgumentEntry> argumentEntryList) {

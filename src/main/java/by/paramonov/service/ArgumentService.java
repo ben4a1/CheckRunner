@@ -4,9 +4,11 @@ import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class ArgumentService {
     List<ArgumentParser> argumentParserList;
 

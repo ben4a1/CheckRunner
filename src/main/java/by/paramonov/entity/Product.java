@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "products")
 @AttributeOverride(name = "id", column = @Column(name = "product_id"))
-@EqualsAndHashCode(callSuper = true) //TODO for what?
 @Getter
 @Setter
 @AllArgsConstructor

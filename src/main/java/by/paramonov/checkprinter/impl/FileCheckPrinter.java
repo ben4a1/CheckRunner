@@ -2,11 +2,12 @@ package by.paramonov.checkprinter.impl;
 
 import by.paramonov.checkprinter.CheckPrinter;
 import by.paramonov.entity.Order;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+@Component
 public class FileCheckPrinter implements CheckPrinter {
     private static final String OUTPUT_CHECK_FILE_PATH = "src/main/resources/check.txt";
     private static final File OUTPUT_CHECK_FILE = new File(OUTPUT_CHECK_FILE_PATH);
