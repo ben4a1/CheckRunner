@@ -20,6 +20,14 @@ dependencies {
     testImplementation("junit:junit:3.8.2")
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
+
+    implementation ("org.postgresql:postgresql:42.2.27")
+
+    implementation (dependencyNotation = "org.springframework.boot:spring-boot-starter-data-jpa:2.7.5") //Для работы с БД ORM
+
+    implementation ("org.springframework.boot:spring-boot-starter-data-rest:2.7.5") //Для создания REST контроллера
+
+    testImplementation ("org.springframework.boot:spring-boot-starter-test:2.7.5") //Для сервера Tomcat
 }
 
 group = "by.paramonov"

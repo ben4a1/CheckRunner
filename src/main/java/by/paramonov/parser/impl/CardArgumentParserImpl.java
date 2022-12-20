@@ -1,8 +1,8 @@
 package by.paramonov.parser.impl;
 
-import by.paramonov.model.incomearguments.ArgumentEntry;
+import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
-import by.paramonov.model.incomearguments.CardEntry;
+import by.paramonov.model.incomeentries.CardEntry;
 import by.paramonov.parser.ArgumentParser;
 
 public class CardArgumentParserImpl implements ArgumentParser {

@@ -1,6 +1,6 @@
 package by.paramonov.parser;
 
-import by.paramonov.model.incomearguments.ArgumentEntry;
+import by.paramonov.model.incomeentries.ArgumentEntry;
 
 public interface ArgumentParser {
 

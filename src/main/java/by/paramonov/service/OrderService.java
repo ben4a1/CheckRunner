@@ -2,10 +2,10 @@ package by.paramonov.service;
 
 import by.paramonov.entity.Product;
 import by.paramonov.model.DiscountCard;
-import by.paramonov.model.incomearguments.ArgumentEntry;
+import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.entity.Order;
-import by.paramonov.model.incomearguments.CardEntry;
-import by.paramonov.model.incomearguments.ProductEntry;
+import by.paramonov.model.incomeentries.CardEntry;
+import by.paramonov.model.incomeentries.ProductEntry;
 import by.paramonov.price.PriceReader;
 import by.paramonov.price.impl.PriceReaderFromFileImpl;
 import lombok.Getter;
@@ -31,15 +31,17 @@ public class OrderService {
     private final ArgumentService argumentService;
     PriceReader priceReader;
 
+
     public OrderService() {
         priceReader = new PriceReaderFromFileImpl();
         argumentService = new ArgumentService();
     }
 
-    public void setInputOrderAndDiscountCard(String[] inputArgs, Order order) {
+    //TODO retunr statm Order order
+    public Order createOrder(List<ArgumentEntry> argumentEntryList) {
+        Order order = new Order();
         Map<Integer, Integer> inputMap = new HashMap<>();
-        List<ArgumentEntry> argumentEntries = argumentService.parseInputArguments(inputArgs);
-        argumentEntries.forEach(x -> {
+        argumentEntryList.forEach(x -> {
             if (x instanceof ProductEntry) {
                 inputMap.put(((ProductEntry) x).getProductId(), ((ProductEntry) x).getProductQuantity());
             } else {
@@ -47,8 +49,11 @@ public class OrderService {
             }
         });
         order.setInputOrder(inputMap);
+        setSummaryOrderList(order);
+        return order;
     }
 
+    //TODO объединить с методом выше?
     public void setSummaryOrderList(Order order) {
         priceList = priceReader.getPriceList();
         List<String[]> summOrderList = new LinkedList<>();

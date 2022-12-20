@@ -26,7 +26,7 @@ public class Order extends BaseEntity {
     static final String START_THIRD_LINE_OF_THE_END = "TOTAL DISCOUNT";
     private static final String START_FOURTH_LINE_OF_THE_END = "TOTAL";
     static double vat = 0.2; // НДС 20%
-    static final String START_SECOND_LINE_OF_THE_END = format("VAT%2.2f%%", (Order.vat * 100));
+    static final String START_SECOND_LINE_OF_THE_END = format("VAT%.2f%%", (Order.vat * 100));
     public static double quantityDiscount = 0.1; // скидка 10% если товар акционный и его количество в заказе более quantityForDiscount
 
     public static int quantityForDiscount = 6; // количество единиц товара, необходимых для получения акционной скидки
@@ -42,6 +42,8 @@ public class Order extends BaseEntity {
         totalDiscount = discountValueCard + discountValuePromotion;
     }
 
+    //TODO toString удалить, всё в printCheck?
+    //TODO попроще    toTextView()
     @Override
     public String toString() {
         int qtyLength = summaryOrderList.stream().mapToInt(x -> x[0].length()).max().getAsInt();
@@ -125,7 +127,7 @@ public class Order extends BaseEntity {
                 .append("\n")
                 .append(START_FOURTH_LINE_OF_THE_END)
                 .append(" ".repeat(lineLength - START_FOURTH_LINE_OF_THE_END.length() - format("$%.2f", totalPrice).length()))
-                .append(format("$%.2f", totalPrice)); //TODO
+                .append(format("$%.2f", totalPrice + (totalPrice * vat)));
         return output.toString();
     }
 

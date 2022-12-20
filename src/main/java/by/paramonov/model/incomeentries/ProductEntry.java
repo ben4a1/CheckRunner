@@ -1,4 +1,4 @@
-package by.paramonov.model.incomearguments;
+package by.paramonov.model.incomeentries;
 
 import by.paramonov.model.TypeOfArgument;
 import lombok.Getter;

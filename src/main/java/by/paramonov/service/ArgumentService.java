@@ -1,6 +1,6 @@
 package by.paramonov.service;
 
-import by.paramonov.model.incomearguments.ArgumentEntry;
+import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.parser.ArgumentParser;
 import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;

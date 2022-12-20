@@ -1,7 +1,6 @@
 package by.paramonov;
 
 import by.paramonov.processor.Processor;
-import by.paramonov.service.OrderService;
 
 public class CheckRunner {
     public static void main(String[] args) {
