@@ -6,6 +6,7 @@ import by.paramonov.entity.Order;
 public class ConsoleCheckPrinter implements CheckPrinter {
     @Override
     public void printCheck(Order order) {
-
+        String toConsole = order.toTextView();
+        System.out.println(toConsole);
     }
 }

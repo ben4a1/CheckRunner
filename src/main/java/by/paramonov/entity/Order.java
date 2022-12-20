@@ -42,10 +42,7 @@ public class Order extends BaseEntity {
         totalDiscount = discountValueCard + discountValuePromotion;
     }
 
-    //TODO toString удалить, всё в printCheck?
-    //TODO попроще    toTextView()
-    @Override
-    public String toString() {
+    public String toTextView(){
         int qtyLength = summaryOrderList.stream().mapToInt(x -> x[0].length()).max().getAsInt();
         int priceLength = summaryOrderList.stream().mapToInt(x -> x[2].length()).max().getAsInt();
         int descriptionLength = summaryOrderList.stream().mapToInt(x -> x[1].length()).max().getAsInt();
@@ -110,7 +107,7 @@ public class Order extends BaseEntity {
         });
         // нижняя граница построчного представления чека/заказа
         output.append("\n")
-                .append(emptyLine)
+                .append(whiteSpaceAndPlusLine)
                 .append("\n")
                 .append(plusLine).append("\n")
                 .append(START_FIRST_LINE_OF_THE_END)
@@ -130,5 +127,4 @@ public class Order extends BaseEntity {
                 .append(format("$%.2f", totalPrice + (totalPrice * vat)));
         return output.toString();
     }
-
 }

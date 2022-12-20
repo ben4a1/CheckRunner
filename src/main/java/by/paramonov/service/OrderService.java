@@ -37,7 +37,6 @@ public class OrderService {
         argumentService = new ArgumentService();
     }
 
-    //TODO retunr statm Order order
     public Order createOrder(List<ArgumentEntry> argumentEntryList) {
         Order order = new Order();
         Map<Integer, Integer> inputMap = new HashMap<>();
@@ -53,8 +52,7 @@ public class OrderService {
         return order;
     }
 
-    //TODO объединить с методом выше?
-    public void setSummaryOrderList(Order order) {
+    private void setSummaryOrderList(Order order) {
         priceList = priceReader.getPriceList();
         List<String[]> summOrderList = new LinkedList<>();
         order.getInputOrder().forEach((productId, quantity) -> {
