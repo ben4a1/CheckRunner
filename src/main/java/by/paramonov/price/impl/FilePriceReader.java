@@ -2,6 +2,7 @@ package by.paramonov.price.impl;
 
 import by.paramonov.entity.Product;
 import by.paramonov.price.PriceReader;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileReader;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class FilePriceReader implements PriceReader {
 
     private static final String INPUT_PRICE_FILE_PATH = "src/main/resources/price.txt";

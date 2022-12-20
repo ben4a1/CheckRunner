@@ -8,10 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.lang.String.format;
 
@@ -45,7 +42,23 @@ public class Order extends BaseEntity {
         totalDiscount = discountValueCard + discountValuePromotion;
     }
 
-    public String toTextView(){
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order order)) return false;
+        return Double.compare(order.totalPrice, totalPrice) == 0
+               && Double.compare(order.discountValuePromotion, discountValuePromotion) == 0
+               && Double.compare(order.discountValueCard, discountValueCard) == 0
+               && Double.compare(order.totalDiscount, totalDiscount) == 0
+               && discountCard == order.discountCard && Objects.equals(inputOrder, order.inputOrder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(discountCard, totalPrice, discountValuePromotion, discountValueCard, totalDiscount, inputOrder);
+    }
+
+    public String toTextView() {
         int qtyLength = summaryOrderList.stream().mapToInt(x -> x[0].length()).max().getAsInt();
         int priceLength = summaryOrderList.stream().mapToInt(x -> x[2].length()).max().getAsInt();
         int descriptionLength = summaryOrderList.stream().mapToInt(x -> x[1].length()).max().getAsInt();

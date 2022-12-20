@@ -4,7 +4,6 @@ import by.paramonov.model.TypeOfArgument;
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.model.incomeentries.CardEntry;
 import by.paramonov.parser.ArgumentParser;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
