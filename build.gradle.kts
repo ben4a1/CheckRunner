@@ -7,6 +7,7 @@
 plugins {
     java
     `maven-publish`
+    jacoco
 }
 
 repositories {
@@ -27,10 +28,11 @@ dependencies {
 
     implementation ("org.springframework.boot:spring-boot-starter-data-rest:2.7.5") //Для создания REST контроллера
 
-    implementation ("javax.xml.bind:jaxb-api:2.3.0")
-
+    implementation ("org.springframework.boot:spring-boot-autoconfigure:2.7.5")
 
     testImplementation ("org.springframework.boot:spring-boot-starter-test:2.7.5") //Для сервера Tomcat
+
+    implementation ("javax.xml.bind:jaxb-api:2.3.0")
 }
 
 group = "by.paramonov"
@@ -46,4 +48,9 @@ publishing {
 
 tasks.withType<JavaCompile>() {
     options.encoding = "UTF-8"
+}
+
+
+tasks.test {
+    useJUnitPlatform()
 }

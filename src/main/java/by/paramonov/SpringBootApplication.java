@@ -1,6 +1,5 @@
 package by.paramonov;
 
-
 import org.springframework.boot.SpringApplication;
 
 @org.springframework.boot.autoconfigure.SpringBootApplication

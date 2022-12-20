@@ -6,6 +6,6 @@ public enum TypeOfArgument {
 
     String type;
 
-    TypeOfArgument(String card) {
+    TypeOfArgument(String str) {
     }
 }

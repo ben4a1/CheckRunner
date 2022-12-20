@@ -15,6 +15,7 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 @Component
 @Getter
 @Setter
