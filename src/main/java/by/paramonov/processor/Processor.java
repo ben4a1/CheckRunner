@@ -1,7 +1,6 @@
 package by.paramonov.processor;
 
 import by.paramonov.checkprinter.CheckPrinter;
-import by.paramonov.checkprinter.impl.FileCheckPrinter;
 import by.paramonov.entity.Order;
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.service.impl.ArgumentServiceImpl;
@@ -16,10 +15,10 @@ public class Processor {
     private final ArgumentServiceImpl argumentService;
     private final CheckPrinter checkPrinter;
 
-    public Processor(ArgumentServiceImpl argumentService, OrderServiceImpl orderService, CheckPrinter consoleCheckPrinter) {
+    public Processor(ArgumentServiceImpl argumentService, OrderServiceImpl orderService, CheckPrinter fileCheckPrinter) {
         this.argumentService = argumentService;
         this.orderService = orderService;
-        this.checkPrinter = consoleCheckPrinter;
+        this.checkPrinter = fileCheckPrinter;
     }
 
     public void process(String[] args) {

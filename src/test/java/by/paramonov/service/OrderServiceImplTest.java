@@ -5,7 +5,9 @@ import by.paramonov.entity.Product;
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.price.PriceReader;
 import by.paramonov.price.impl.DbPriceReader;
+import by.paramonov.repository.ProductRepository;
 import by.paramonov.service.impl.OrderServiceImpl;
+import by.paramonov.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -22,7 +24,7 @@ class OrderServiceImplTest {
 
 
     @Mock
-    PriceReader priceReader;
+    PriceReader mockitoPriceReader;
 
     @BeforeEach
     public void init(){
@@ -33,7 +35,7 @@ class OrderServiceImplTest {
 
         List<Product> mockitoProductList = new ArrayList<>();
         mockitoProductList.add(new Product(1, "first item", 12.4));
-        Mockito.when(priceReader.getPriceList()).thenReturn(mockitoProductList);
+        Mockito.when(mockitoPriceReader.getPriceList()).thenReturn(mockitoProductList);
 
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
         argumentEntryList.add(productEntry);
@@ -45,12 +47,12 @@ class OrderServiceImplTest {
         Map<Integer, Integer> integerMap = new HashMap<>();
         integerMap.put(0, 5);
 
-        Order orderActual = new OrderServiceImpl(priceReader).createOrder(argumentEntryList);
+        Order orderActual = new OrderServiceImpl(mockitoPriceReader).createOrder(argumentEntryList);
         Order orderExpected = new Order();
         orderExpected.setInputOrder(integerMap);
         orderExpected.setSummaryOrderList(summOrderList);
 
-        assertTrue(orderActual.getInputOrder().equals(orderExpected.getInputOrder()));
+        assertEquals(orderActual.getInputOrder(), orderExpected.getInputOrder());
     }
 
     @Test
