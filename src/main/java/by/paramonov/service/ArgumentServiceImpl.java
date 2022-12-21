@@ -2,20 +2,18 @@ package by.paramonov.service;
 
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.parser.ArgumentParser;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class ArgumentServiceImpl {
+    private final List<ArgumentParser> argumentParserList;
 
-    List<ArgumentParser> argumentParserList;
 
-    public ArgumentServiceImpl(@Qualifier("cardArgumentParserImpl") ArgumentParser cardArgument, @Qualifier("productArgumentParserImpl") ArgumentParser productParser) {
-        argumentParserList = new ArrayList<>();
-        argumentParserList.add(cardArgument);
-        argumentParserList.add(productParser);
+    public ArgumentServiceImpl(List<ArgumentParser> argumentParserList) {
+        this.argumentParserList = argumentParserList;
     }
 
     public List<ArgumentEntry> parseInputArguments(String[] inputArgs) {
