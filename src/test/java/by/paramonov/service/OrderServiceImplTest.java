@@ -55,11 +55,4 @@ class OrderServiceImplTest {
         assertEquals(orderActual.getInputOrder(), orderExpected.getInputOrder());
     }
 
-    @Test
-    void testGetPriceList() {
-    }
-
-    @Test
-    void testSetPriceList() {
-    }
 }

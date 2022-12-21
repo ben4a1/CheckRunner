@@ -4,6 +4,8 @@
     PostgreSQL
     Lombok
     Spring Boot
+    junit
+    Mockito
     система сборки - gradle 7.5
 
 Для запуска приложения:
