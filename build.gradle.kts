@@ -7,6 +7,11 @@
 plugins {
     java
     `maven-publish`
+    id("org.springframework.boot") version "2.7.5"
+}
+
+springBoot {
+    mainClass.set("by.paramonov.CheckApplication")
 }
 
 repositories {
@@ -34,6 +39,8 @@ dependencies {
     implementation ("javax.xml.bind:jaxb-api:2.3.0")
 }
 
+
+
 group = "by.paramonov"
 version = "1.0-SNAPSHOT"
 description = "check-runnerV2"
@@ -48,7 +55,6 @@ publishing {
 tasks.withType<JavaCompile>() {
     options.encoding = "UTF-8"
 }
-
 
 tasks.test {
     useJUnitPlatform()
