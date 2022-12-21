@@ -21,7 +21,7 @@ public class TestClass {
     public static ArgumentEntry productEntry;
     public static ArgumentEntry cardEntry;
     static {
-        productEntry = new ProductEntry(TypeOfArgument.PRODUCT, 1, 5);
+        productEntry = new ProductEntry(TypeOfArgument.PRODUCT, 0, 5);
         cardEntry = new CardEntry(TypeOfArgument.CARD, 1);
     }
 

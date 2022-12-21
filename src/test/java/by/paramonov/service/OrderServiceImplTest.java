@@ -34,7 +34,7 @@ class OrderServiceImplTest {
     void testCreateOrder() {
 
         List<Product> mockitoProductList = new ArrayList<>();
-        mockitoProductList.add(new Product(1, "first item", 12.4));
+        mockitoProductList.add(new Product(0, "first item", 12.4));
         Mockito.when(mockitoPriceReader.getPriceList()).thenReturn(mockitoProductList);
 
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
@@ -42,7 +42,7 @@ class OrderServiceImplTest {
         argumentEntryList.add(cardEntry);
 
         List<String[]> summOrderList = new LinkedList<>();
-        summOrderList.add(new String[]{"0", "sixth item", "6.66", "33.3"});
+        summOrderList.add(new String[]{"0", "first item", "12.4", "62"});
 
         Map<Integer, Integer> integerMap = new HashMap<>();
         integerMap.put(0, 5);
