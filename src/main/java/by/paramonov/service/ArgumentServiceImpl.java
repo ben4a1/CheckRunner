@@ -2,23 +2,22 @@ package by.paramonov.service;
 
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.parser.ArgumentParser;
-import by.paramonov.parser.impl.CardArgumentParserImpl;
-import by.paramonov.parser.impl.ProductArgumentParserImpl;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Component
-public class ArgumentService {
+@Service
+public class ArgumentServiceImpl {
+
     List<ArgumentParser> argumentParserList;
 
-    public ArgumentService() {
+    public ArgumentServiceImpl(@Qualifier("cardArgumentParserImpl") ArgumentParser cardArgument, @Qualifier("productArgumentParserImpl") ArgumentParser productParser) {
         argumentParserList = new ArrayList<>();
-        argumentParserList.add(new ProductArgumentParserImpl());
-        argumentParserList.add(new CardArgumentParserImpl());
+        argumentParserList.add(cardArgument);
+        argumentParserList.add(productParser);
     }
 
-    //TODO argumentParserList.findFirst()
     public List<ArgumentEntry> parseInputArguments(String[] inputArgs) {
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
         Arrays.stream(inputArgs).forEach(argument ->

@@ -19,19 +19,19 @@ class OrderServiceTest {
 
 
 
-    @Test
-    void testCreateOrder() {
-        OrderService orderService = new OrderService(); //TODO
-        List<ArgumentEntry> argumentEntryList = new LinkedList<>();
-        argumentEntryList.add(new ProductEntry(TypeOfArgument.PRODUCT, 1, 5));
-        argumentEntryList.add(new CardEntry(TypeOfArgument.CARD, 1));
-        Map<Integer, Integer> integerMap = new HashMap<>();
-        integerMap.put(1, 5);
-        Order orderActual = orderService.createOrder(argumentEntryList);
-        Order orderExpected = new Order();
-        orderExpected.setInputOrder(integerMap);
-        assertTrue(orderActual.getInputOrder().equals(orderExpected.getInputOrder()));
-    }
+//    @Test
+//    void testCreateOrder() {
+//        OrderService orderService = new OrderService(); //TODO
+//        List<ArgumentEntry> argumentEntryList = new LinkedList<>();
+//        argumentEntryList.add(new ProductEntry(TypeOfArgument.PRODUCT, 1, 5));
+//        argumentEntryList.add(new CardEntry(TypeOfArgument.CARD, 1));
+//        Map<Integer, Integer> integerMap = new HashMap<>();
+//        integerMap.put(1, 5);
+//        Order orderActual = orderService.createOrder(argumentEntryList);
+//        Order orderExpected = new Order();
+//        orderExpected.setInputOrder(integerMap);
+//        assertTrue(orderActual.getInputOrder().equals(orderExpected.getInputOrder()));
+//    }
 
     @Test
     void testGetPriceList() {

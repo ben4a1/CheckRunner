@@ -4,9 +4,9 @@ import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
 import by.paramonov.model.incomeentries.CardEntry;
 import by.paramonov.parser.ArgumentParser;
-import lombok.EqualsAndHashCode;
+import org.springframework.stereotype.Component;
 
-@EqualsAndHashCode
+@Component
 public class CardArgumentParserImpl implements ArgumentParser {
 
     @Override

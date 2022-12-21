@@ -10,11 +10,11 @@ import by.paramonov.price.PriceReader;
 import by.paramonov.price.impl.DbPriceReader;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Component
+@Service
 public class OrderService {
 
     @Getter

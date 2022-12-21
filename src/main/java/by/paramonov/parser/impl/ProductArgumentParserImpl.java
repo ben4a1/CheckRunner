@@ -4,9 +4,11 @@ import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
 import by.paramonov.model.incomeentries.ProductEntry;
 import by.paramonov.parser.ArgumentParser;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+@Component
 public class ProductArgumentParserImpl implements ArgumentParser {
     @Override
     public boolean isApplicable(String str) {
