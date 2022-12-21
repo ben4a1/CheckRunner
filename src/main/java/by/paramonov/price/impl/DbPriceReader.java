@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class DbPriceReader implements PriceReader {
 
-    private ProductService productService;
+    private final ProductService productService;
     public DbPriceReader(ProductService productService){
         this.productService = productService;
     }

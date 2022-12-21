@@ -16,10 +16,10 @@ public class Processor {
     private final ArgumentServiceImpl argumentService;
     private final CheckPrinter checkPrinter;
 
-    public Processor(ArgumentServiceImpl argumentService, OrderServiceImpl orderService, FileCheckPrinter fileCheckPrinter) {
+    public Processor(ArgumentServiceImpl argumentService, OrderServiceImpl orderService, CheckPrinter consoleCheckPrinter) {
         this.argumentService = argumentService;
         this.orderService = orderService;
-        this.checkPrinter = fileCheckPrinter;
+        this.checkPrinter = consoleCheckPrinter;
     }
 
     public void process(String[] args) {

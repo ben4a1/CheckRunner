@@ -10,7 +10,7 @@ import by.paramonov.parser.impl.CardArgumentParserImpl;
 import by.paramonov.parser.impl.ProductArgumentParserImpl;
 
 public class TestClass {
-    public static String productArgument = "123-15";
+    public static String productArgument = "0-5";
     public static String cardArgument = "card-1";
     public static ArgumentParser productArgumentParser;
     public static ArgumentParser cardArgumentParser;
@@ -21,7 +21,7 @@ public class TestClass {
     public static ArgumentEntry productEntry;
     public static ArgumentEntry cardEntry;
     static {
-        productEntry = new ProductEntry(TypeOfArgument.PRODUCT, 5, 5);
+        productEntry = new ProductEntry(TypeOfArgument.PRODUCT, 1, 5);
         cardEntry = new CardEntry(TypeOfArgument.CARD, 1);
     }
 

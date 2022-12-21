@@ -42,22 +42,6 @@ public class Order extends BaseEntity {
         totalDiscount = discountValueCard + discountValuePromotion;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Order order)) return false;
-        return Double.compare(order.totalPrice, totalPrice) == 0
-               && Double.compare(order.discountValuePromotion, discountValuePromotion) == 0
-               && Double.compare(order.discountValueCard, discountValueCard) == 0
-               && Double.compare(order.totalDiscount, totalDiscount) == 0
-               && discountCard == order.discountCard && Objects.equals(inputOrder, order.inputOrder);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(discountCard, totalPrice, discountValuePromotion, discountValueCard, totalDiscount, inputOrder);
-    }
-
     public String toTextView() {
         int qtyLength = summaryOrderList.stream().mapToInt(x -> x[0].length()).max().getAsInt();
         int priceLength = summaryOrderList.stream().mapToInt(x -> x[2].length()).max().getAsInt();
@@ -142,5 +126,21 @@ public class Order extends BaseEntity {
                 .append(" ".repeat(lineLength - START_FOURTH_LINE_OF_THE_END.length() - format("$%.2f", totalPrice).length()))
                 .append(format("$%.2f", totalPrice + (totalPrice * vat)));
         return output.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order order)) return false;
+        return Double.compare(order.totalPrice, totalPrice) == 0
+               && Double.compare(order.discountValuePromotion, discountValuePromotion) == 0
+               && Double.compare(order.discountValueCard, discountValueCard) == 0
+               && Double.compare(order.totalDiscount, totalDiscount) == 0
+               && discountCard == order.discountCard && Objects.equals(inputOrder, order.inputOrder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(discountCard, totalPrice, discountValuePromotion, discountValueCard, totalDiscount, inputOrder);
     }
 }

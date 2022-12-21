@@ -23,7 +23,7 @@ public class OrderServiceImpl {
 
     PriceReader priceReader;
 
-    public OrderServiceImpl(DbPriceReader dbPriceReader) {
+    public OrderServiceImpl(PriceReader dbPriceReader) {
         priceReader = dbPriceReader;
     }
 
