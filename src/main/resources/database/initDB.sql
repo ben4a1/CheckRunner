@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS products, cards;
+DROP TABLE IF EXISTS products, discount_cards;
 
 CREATE TABLE products
 (
@@ -8,7 +8,7 @@ CREATE TABLE products
     is_promotion BOOLEAN  NOT NULL
     );
 
-CREATE TABLE cards
+CREATE TABLE discount_cards
 (
     card_id    BIGSERIAL PRIMARY KEY ,
     gradation VARCHAR NOT NULL ,

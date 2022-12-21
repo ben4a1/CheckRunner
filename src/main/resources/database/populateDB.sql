@@ -15,7 +15,7 @@ VALUES (1, 'first item', 12.4, false),
        (14, 'fourteenth item', 1000, false),
        (15, 'fifteenth item', 2.48, false);
 
-INSERT INTO cards
+INSERT INTO discount_cards
 VALUES (1, 'WOOD', 'novice buyer', 0.015),
        (2, 'SILVER', 'normal buyer', 0.03),
        (3, 'GOLD', 'good buyer', 0.05),

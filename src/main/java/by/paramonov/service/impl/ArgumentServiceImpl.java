@@ -1,14 +1,14 @@
-package by.paramonov.service;
+package by.paramonov.service.impl;
 
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.parser.ArgumentParser;
-import org.springframework.beans.factory.annotation.Autowired;
+import by.paramonov.service.ArgumentService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class ArgumentServiceImpl {
+public class ArgumentServiceImpl implements ArgumentService {
     private final List<ArgumentParser> argumentParserList;
 
 
@@ -16,6 +16,7 @@ public class ArgumentServiceImpl {
         this.argumentParserList = argumentParserList;
     }
 
+    @Override
     public List<ArgumentEntry> parseInputArguments(String[] inputArgs) {
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
         Arrays.stream(inputArgs).forEach(argument ->

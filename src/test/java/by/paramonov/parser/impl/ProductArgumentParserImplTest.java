@@ -1,27 +1,24 @@
 package by.paramonov.parser.impl;
 
-import by.paramonov.model.TypeOfArgument;
 import by.paramonov.model.incomeentries.ArgumentEntry;
-import by.paramonov.model.incomeentries.ProductEntry;
-import by.paramonov.parser.ArgumentParser;
 import org.junit.jupiter.api.Test;
 
+import static by.paramonov.util.TestClass.productArgumentParser;
+import static by.paramonov.util.TestClass.productEntry;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductArgumentParserImplTest {
-    String notCard = "5-5";
+    String notCard = "5-5"; //TODO
     String card = "card-1";
-    ArgumentEntry productEntry = new ProductEntry(TypeOfArgument.PRODUCT, 5, 5);
-    ArgumentParser argumentParser = new ProductArgumentParserImpl();
     @Test
     void isApplicable() {
-        assertFalse(argumentParser.isApplicable(card));
-        assertTrue(argumentParser.isApplicable(notCard));
+        assertFalse(productArgumentParser.isApplicable(card));
+        assertTrue(productArgumentParser.isApplicable(notCard));
     }
 
     @Test
     void parse() {
-        ArgumentEntry parse = argumentParser.parse(notCard);
+        ArgumentEntry parse = productArgumentParser.parse(notCard);
         assertEquals(productEntry, parse);
     }
 }
