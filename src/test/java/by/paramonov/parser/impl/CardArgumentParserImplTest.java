@@ -9,8 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class CardArgumentParserImplTest {
 
     @Test
-    void isApplicableTest() {
+    void checkIsApplicableShouldReturnTrue() {
         assertTrue(cardArgumentParser.isApplicable(cardArgument));
+
+    }
+
+    @Test
+    void checkIsApplicableShouldReturnFalse(){
         assertFalse(cardArgumentParser.isApplicable(productArgument));
     }
 

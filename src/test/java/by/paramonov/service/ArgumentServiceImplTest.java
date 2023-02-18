@@ -29,7 +29,6 @@ class ArgumentServiceImplTest {
         Mockito.when(mockitoArgumentParserList.get(0)).thenReturn(productArgumentParser);
         Mockito.when(mockitoArgumentParserList.get(1)).thenReturn(cardArgumentParser);
         List<ArgumentEntry> expectedArgumentList = new LinkedList<>(List.copyOf(argumentEntryList));
-
         List<ArgumentEntry> actualArgumentList = new ArgumentServiceImpl(argumentParserList).parseInputArguments(new String[]{productArgument, cardArgument});
         assertEquals(expectedArgumentList, actualArgumentList);
     }
