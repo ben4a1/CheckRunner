@@ -1,21 +1,22 @@
 package by.paramonov.parser.impl;
 
-import by.paramonov.model.incomeentries.ArgumentEntry;
 import org.junit.jupiter.api.Test;
 
 import static by.paramonov.util.TestClass.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class ProductArgumentParserImplTest {
     @Test
-    void isApplicable() {
-        assertFalse(productArgumentParser.isApplicable(cardArgument));
-        assertTrue(productArgumentParser.isApplicable(productArgument));
+    void checkIsApplicableShouldReturnTrue() {
+        assertThat(productArgumentParser.isApplicable(productArgument)).isTrue();
     }
 
     @Test
-    void parse() {
-        ArgumentEntry parse = productArgumentParser.parse(productArgument);
-        assertEquals(productEntry, parse);
+    void checkIsApplicableShouldReturnFalse() {
+        assertThat(productArgumentParser.isApplicable(cardArgument)).isFalse();
+    }
+    @Test
+    void checkParseShouldReturnEquals() {
+        assertThat(productEntry).isEqualTo(productArgumentParser.parse(productArgument));
     }
 }
