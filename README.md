@@ -20,4 +20,4 @@
 
 Для смены вывода чека (консоль или файл):
     
-    в конструкторе Processor сменить параметр на consolePriceReader или fiePriceReader соответственно.
+    в конструкторе Processor сменить параметр на consoleCheckPrinter или fileCheckPrinter соответственно.
