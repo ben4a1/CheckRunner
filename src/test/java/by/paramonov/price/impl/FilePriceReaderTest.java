@@ -9,10 +9,11 @@ class FilePriceReaderTest {
 
     @BeforeEach
     void setUp() {
+
     }
 
     @Test
-    void getPriceList() {
+    void checkGetPriceListShouldReturn() {
 
     }
 }
