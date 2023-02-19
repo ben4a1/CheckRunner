@@ -25,4 +25,17 @@ public class Product extends BaseEntity{
         this.description = description;
         this.price = price;
     }
+
+    public Product(String description, double price, boolean isPromotion) {
+        this.description = description;
+        this.price = price;
+        this.isPromotion = isPromotion;
+    }
+
+    public Product(long id, String description, double price, boolean isPromotion) {
+        super(id);
+        this.description = description;
+        this.price = price;
+        this.isPromotion = isPromotion;
+    }
 }
