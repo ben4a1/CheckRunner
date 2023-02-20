@@ -8,4 +8,7 @@ import java.util.List;
 public class PriceBuilder {
     private List<Product> productList = new ArrayList<>();
 
+    public PriceBuilder(){
+
+    }
 }

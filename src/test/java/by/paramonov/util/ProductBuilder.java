@@ -24,6 +24,7 @@ public class ProductBuilder {
     }
 
     public Product build(){
-        Product product = new Product(id, description, price, isPromotion)
+        Product product = new Product(id, description, price, isPromotion);
+        return product;
     }
 }
