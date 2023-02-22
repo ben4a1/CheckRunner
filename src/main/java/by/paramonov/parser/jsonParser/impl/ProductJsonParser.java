@@ -21,7 +21,7 @@ public class ProductJsonParser implements JsonParser<Product> {
         StringBuilder stringBuilder = new StringBuilder();
         Map<String, Object> inputMap = new HashMap<>();
         List<Field> fields = Stream.concat(
-                Stream.of(Class.forName("by.paramonov.entity.Product").getSuperclass().getDeclaredFields()),
+                Stream.of(Product.class.getSuperclass().getDeclaredFields()),
                 Stream.of(productToJson.getClass().getDeclaredFields())).toList();
         fields.forEach(field -> {
             field.setAccessible(true);
@@ -36,7 +36,7 @@ public class ProductJsonParser implements JsonParser<Product> {
         });
         stringBuilder
                 .append("{\n")
-                .append("\t\"id\":").append(inputMap.get("id")).append("L,")
+                .append("\t\"id\":").append(inputMap.get("id")).append(",")
                 .append("\n")
                 .append("\t\"description\":\"").append(inputMap.get("description")).append("\",")
                 .append("\n")
