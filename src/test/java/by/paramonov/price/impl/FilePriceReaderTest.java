@@ -20,11 +20,14 @@ class FilePriceReaderTest {
         productBuilder = new ProductBuilder();
         productListFromFile = new FilePriceReader().getPriceList();
         productList = Stream.of(productBuilder
-                .withId(1L).withDescription("Shovel").withPrice(41.57).withPromotion(false).build()).collect(Collectors.toList());
+                        .withId(1L).withDescription("Shovel").withPrice(41.57).withPromotion(false).build(),
+                productBuilder
+                        .withId(2L).withDescription("Vacuum_cleaner").withPrice(238.60).build(),
+                productBuilder.withId(3L).withDescription("Laminate").withPrice(4.50).build()).collect(Collectors.toList());
     }
 
     @Test
     void checkGetPriceListShouldReturnEquals() {
-        Assertions.assertThat(productListFromFile.get(0)).isEqualTo(productList.get(0));
+        Assertions.assertThat(productListFromFile.get(1)).isEqualTo(productList.get(1));
     }
 }
