@@ -32,18 +32,14 @@ class OrderServiceImplTest {
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
         argumentEntryList.add(productEntry);
         argumentEntryList.add(cardEntry);
-
         List<String[]> summOrderList = new LinkedList<>();
         summOrderList.add(new String[]{"0", "first item", "12.4", "62"});
-
         Map<Integer, Integer> integerMap = new HashMap<>();
         integerMap.put(0, 5);
-
         Order orderActual = new OrderServiceImpl(mockitoPriceReader).createOrder(argumentEntryList);
         Order orderExpected = new Order();
         orderExpected.setInputOrder(integerMap);
         orderExpected.setSummaryOrderList(summOrderList);
-
         assertEquals(orderActual.getInputOrder(), orderExpected.getInputOrder());
     }
 }
