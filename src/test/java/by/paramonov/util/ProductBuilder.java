@@ -18,6 +18,11 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder withPrice(Double price){
+        this.price = price;
+        return this;
+    }
+
     public ProductBuilder withPromotion(Boolean isPromotion) {
         this.isPromotion = isPromotion;
         return this;
