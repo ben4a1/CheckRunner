@@ -1,7 +1,7 @@
 package by.paramonov.service;
 
 import by.paramonov.model.incomeentries.ArgumentEntry;
-import by.paramonov.parser.ArgumentParser;
+import by.paramonov.parser.argumentParser.ArgumentParser;
 import by.paramonov.service.impl.ArgumentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

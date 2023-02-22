@@ -5,9 +5,9 @@ import by.paramonov.model.TypeOfArgument;
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.model.incomeentries.CardEntry;
 import by.paramonov.model.incomeentries.ProductEntry;
-import by.paramonov.parser.ArgumentParser;
-import by.paramonov.parser.impl.CardArgumentParserImpl;
-import by.paramonov.parser.impl.ProductArgumentParserImpl;
+import by.paramonov.parser.argumentParser.ArgumentParser;
+import by.paramonov.parser.argumentParser.impl.CardArgumentParserImpl;
+import by.paramonov.parser.argumentParser.impl.ProductArgumentParserImpl;
 
 import java.util.LinkedList;
 import java.util.List;
