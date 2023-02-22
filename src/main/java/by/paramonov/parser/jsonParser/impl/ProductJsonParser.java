@@ -3,13 +3,12 @@ package by.paramonov.parser.jsonParser.impl;
 import by.paramonov.entity.Product;
 import by.paramonov.parser.jsonParser.JsonParser;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class ProductJsonParser implements JsonParser<Product> {
@@ -55,8 +54,11 @@ public class ProductJsonParser implements JsonParser<Product> {
     }
 
     @Override
-    public Product fromJson(String productFromJson) {
-        return new Product();
+    public Product fromJson(File productFromJson) {
+        Product product = new Product();
+        String replace = productFromJson.replaceAll("\\s", "");
+        System.out.println(replace);
+        return product;
     }
 
     public static void main(String[] args) {
@@ -66,5 +68,20 @@ public class ProductJsonParser implements JsonParser<Product> {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        ClassLoader classLoader = ProductJsonParser.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream("product.json");
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                stringBuilder.append(line).append("\n");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        String data = stringBuilder.toString();
+        productJsonParser.fromJson(data);
+        System.out.println(data);
     }
 }
