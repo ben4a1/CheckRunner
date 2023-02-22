@@ -18,21 +18,16 @@ import java.util.Objects;
 public class Product extends BaseEntity{
     private String description;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(description, price, isPromotion);
-    }
-
     private double price;
 
     private boolean isPromotion;
-//    private String category;
+
+    //    private String category;
     public Product(long id, String description, double price) {
         super();
         this.description = description;
         this.price = price;
     }
-
     public Product(String description, double price, boolean isPromotion) {
         this.description = description;
         this.price = price;
@@ -51,5 +46,10 @@ public class Product extends BaseEntity{
         if (this == o) return true;
         if (!(o instanceof Product product)) return false;
         return Double.compare(product.price, price) == 0 && isPromotion == product.isPromotion && description.equals(product.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, price, isPromotion);
     }
 }
