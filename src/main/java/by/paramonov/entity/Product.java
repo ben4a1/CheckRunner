@@ -13,7 +13,6 @@ import java.util.Objects;
 @AttributeOverride(name = "id", column = @Column(name = "product_id"))
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Product extends BaseEntity{
     private String description;
