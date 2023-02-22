@@ -1,9 +1,9 @@
-package by.paramonov.mapper.impl;
+package by.paramonov.parser.jsonParser.impl;
 
 import by.paramonov.entity.Product;
-import by.paramonov.mapper.JsonMapper;
+import by.paramonov.parser.jsonParser.JsonParser;
 
-public class ProductJsonMapper implements JsonMapper<Product> {
+public class ProductJsonParser implements JsonParser<Product> {
     @Override
     public String toJson(Product productToJson) {
         return "";
