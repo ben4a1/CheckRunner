@@ -5,15 +5,12 @@ import by.paramonov.parser.jsonParser.JsonParser;
 
 import java.io.*;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ProductJsonParser implements JsonParser<Product> {
-    private static final String OUTPUT_JSON_FILE_PATH = "src/main/resources/product.json";
-    private static final File OUTPUT_JSON_FILE = new File(OUTPUT_JSON_FILE_PATH);
+    private static final String JSON_FILE_PATH = "src/main/resources/product.json";
+    private static final File JSON_FILE = new File(JSON_FILE_PATH);
 
     @Override
     public String toJson(Product productToJson) throws ClassNotFoundException {
@@ -41,10 +38,10 @@ public class ProductJsonParser implements JsonParser<Product> {
                 .append("\n")
                 .append("\t\"price\":").append(inputMap.get("price")).append(",")
                 .append("\n")
-                .append("\t\"isPromotion\":\"").append(inputMap.get("isPromotion")).append("\"")
+                .append("\t\"isPromotion\":").append(inputMap.get("isPromotion"))
                 .append("\n}");
         try {
-            FileWriter fw = new FileWriter(OUTPUT_JSON_FILE);
+            FileWriter fw = new FileWriter(JSON_FILE);
             fw.write(stringBuilder.toString());
             fw.close();
         } catch (IOException e) {
@@ -56,8 +53,35 @@ public class ProductJsonParser implements JsonParser<Product> {
     @Override
     public Product fromJson(File productFromJson) {
         Product product = new Product();
-        String replace = productFromJson.replaceAll("\\s", "");
-        System.out.println(replace);
+        StringBuilder stringBuilder = new StringBuilder();
+        ClassLoader classLoader = ProductJsonParser.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(productFromJson.getName());
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        String stringDataFromFile = stringBuilder.toString();
+        List<String> fieldsWithValues = Arrays.stream(stringDataFromFile.replaceAll("(\\s|\\{|})", "").split(",")).toList();
+        fieldsWithValues.stream().map(x -> x.split(":"))
+                .forEach(array -> {
+                    String field = array[0];
+                    String value = array[1];
+                    switch (field) {
+                        case ("id") -> product.setId(Long.parseLong(value));
+                        case ("description") -> product.setDescription(value);
+                        case ("price") -> product.setPrice(Double.parseDouble(value));
+                        case ("isPromotion") -> product.setPromotion(Boolean.parseBoolean(value));
+                        default -> {
+                        }
+                    }
+                });
+        System.out.println(product);
+        System.out.println(fieldsWithValues);
         return product;
     }
 
@@ -68,20 +92,6 @@ public class ProductJsonParser implements JsonParser<Product> {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        ClassLoader classLoader = ProductJsonParser.class.getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("product.json");
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
-            String line;
-            while ((line = bufferedReader.readLine()) != null){
-                stringBuilder.append(line).append("\n");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        String data = stringBuilder.toString();
-        productJsonParser.fromJson(data);
-        System.out.println(data);
+        productJsonParser.fromJson(JSON_FILE);
     }
 }
