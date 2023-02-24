@@ -69,7 +69,7 @@ public class ProductJsonParser implements JsonParser<Product> {
         List<String> fieldsWithValues = Arrays.stream(stringDataFromFile.replaceAll("(\\s|\\{|})", "").split(",")).toList();
         fieldsWithValues.stream().map(x -> x.split(":"))
                 .forEach(array -> {
-                    String field = array[0];
+                    String field = array[0].substring(1, array[0].length()-1);
                     String value = array[1];
                     switch (field) {
                         case ("id") -> product.setId(Long.parseLong(value));
@@ -80,8 +80,6 @@ public class ProductJsonParser implements JsonParser<Product> {
                         }
                     }
                 });
-        System.out.println(product);
-        System.out.println(fieldsWithValues);
         return product;
     }
 
@@ -92,6 +90,6 @@ public class ProductJsonParser implements JsonParser<Product> {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        productJsonParser.fromJson(JSON_FILE);
+        System.out.println(productJsonParser.fromJson(JSON_FILE));
     }
 }
