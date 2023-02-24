@@ -82,14 +82,4 @@ public class ProductJsonParser implements JsonParser<Product> {
                 });
         return product;
     }
-
-    public static void main(String[] args) {
-        ProductJsonParser productJsonParser = new ProductJsonParser();
-        try {
-            productJsonParser.toJson(new Product(1L, "thing", 15.15, false));
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(productJsonParser.fromJson(JSON_FILE));
-    }
 }
