@@ -4,6 +4,7 @@ import by.paramonov.cache.Cache;
 import by.paramonov.cache.impl.LFUCache;
 import by.paramonov.cache.impl.LRUCache;
 
+//TODO cacheAlgorithm and cache size from app.yml
 public class CacheFactory<K, V> {
     private int cacheSize = 4;
 

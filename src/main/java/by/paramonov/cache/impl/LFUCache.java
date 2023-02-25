@@ -4,9 +4,16 @@ import by.paramonov.cache.Cache;
 import by.paramonov.factory.CacheFactory;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * The class implements the LFU algorithm
+ * (a cache storage algorithm that counts how
+ * often each item is used and removes those that are least accessed)
+ *
+ * @param <K> – the type of keys maintained by this cache
+ * @param <V> – the type of cached values
+ */
 public class LFUCache<K, V> implements Cache<K, V> {
     private final int cacheSize;
     private final Map<K, Node<V>> cacheData;
@@ -17,12 +24,7 @@ public class LFUCache<K, V> implements Cache<K, V> {
 
     public LFUCache(int cacheSize) {
         this.cacheSize = cacheSize;
-        this.cacheData = new LinkedHashMap<>() {
-            @Override
-            protected boolean removeEldestEntry(Map.Entry<K, Node<V>> eldest) {
-                return size() > cacheSize;
-            }
-        };
+        this.cacheData = new HashMap<>();
         this.head = new Node(null, this.MAX);
         this.tail = new Node(null, this.MIN);
         head.next = tail;

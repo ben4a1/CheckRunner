@@ -6,12 +6,26 @@ import by.paramonov.factory.CacheFactory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
+/**
+ * The class implements the LRU algorithm (a cache eviction
+ * algorithm that arranges items in the order they are used)
+ *
+ * @param <K> – the type of keys maintained by this cache
+ * @param <V> – the type of cached values
+ */
 public class LRUCache<K, V> implements Cache<K, V> {
     int cacheSize;
     Map<K, V> cacheData;
+
+    /**
+     * Initializing the cache with a given size.
+     * Overriding a method with the condition
+     * of deleting the "oldest" element.
+     *
+     * @param cacheSize - cache size
+     */
     public LRUCache(int cacheSize) {
-        cacheData = new LinkedHashMap<>(cacheSize) {
+        cacheData = new LinkedHashMap<>(cacheSize, 1.2f, true) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
                 return size() > cacheSize;
@@ -37,21 +51,7 @@ public class LRUCache<K, V> implements Cache<K, V> {
     }
 
     @Override
-    public Map<K,V> getAll() {
+    public Map<K, V> getAll() {
         return cacheData;
-    }
-
-    public static void main(String[] args) {
-        CacheFactory<Integer, Integer> integerIntegerLRUCacheFactory = new CacheFactory<>();
-        Cache<Integer, Integer> cache = integerIntegerLRUCacheFactory.createCache("lrU");
-        cache.put(1, 1);
-        cache.put(2, 2);
-        cache.put(3, 3);
-        cache.put(4, 4);
-        cache.get(1);
-        cache.put(5, 5);
-        cache.put(6, 6);
-        cache.put(7, 7);
-        System.out.println(cache.getAll());
     }
 }
