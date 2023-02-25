@@ -94,28 +94,4 @@ public class LFUCache<K, V> implements Cache<K, V> {
         cacheData.forEach((k, vNode) -> map.put(k, vNode.value));
         return map;
     }
-
-    public static void main(String[] args) {
-        CacheFactory<Integer, Integer> intIntLFUCache = new CacheFactory<>();
-        Cache<Integer, Integer> lfuCache = intIntLFUCache.createCache("lfu");
-        lfuCache.put(1, 1);
-        lfuCache.put(2, 2);
-        lfuCache.get(2);
-        lfuCache.put(3, 3);
-        lfuCache.get(1);
-        lfuCache.get(1);
-        lfuCache.put(4, 4);
-        lfuCache.put(5, 5);
-        lfuCache.get(5);
-        lfuCache.get(5);
-        lfuCache.get(2);
-        lfuCache.put(6, 6);
-        lfuCache.get(6);
-        lfuCache.get(6);
-        lfuCache.put(7, 7);
-        lfuCache.put(8, 8);
-        lfuCache.put(9, 9);
-        lfuCache.put(10, 10);
-        System.out.println(lfuCache.getAll());
-    }
 }
