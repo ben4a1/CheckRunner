@@ -1,15 +1,14 @@
-package by.paramonov.factory.impl;
+package by.paramonov.factory;
 
 import by.paramonov.cache.Cache;
 import by.paramonov.cache.impl.LRUCache;
-import by.paramonov.factory.CacheFactory;
 
 public class LRUCacheFactory<K, V> extends CacheFactory<K, V> {
-    private int cacheSize = 3;
+    private int cacheSize = 4;
 
     @Override
     public Cache<K, V> createCache() {
-        return new LRUCache<K, V>(cacheSize);
+        return new LRUCache<>(cacheSize);
     }
     public int getCacheSize() {
         return cacheSize;

@@ -1,30 +1,51 @@
 package by.paramonov.cache.impl;
 
 import by.paramonov.cache.Cache;
+import by.paramonov.factory.LRUCacheFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LRUCache<K, V> extends LinkedHashMap<K, V> implements Cache<K, V> {
-    private final int cacheSize;
 
+public class LRUCache<K, V> implements Cache<K, V> {
+    int cacheSize;
+    Map<K, V> cacheData;
     public LRUCache(int cacheSize) {
-        super(16, 0.75f, true);
+        cacheData = new LinkedHashMap<K, V>(cacheSize) {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+                return size() > cacheSize;
+            }
+        };
         this.cacheSize = cacheSize;
     }
 
     @Override
-    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-        return size() > cacheSize;
+    public void put(K key, V value) {
+        cacheData.put(key, value);
     }
 
     @Override
-    public void putKV(K key, V value) {
-        this.put(key, value);
+    public V get(K key) {
+        if (!cacheData.containsKey(key)) {
+            return null;
+        }
+        V value = cacheData.get(key);
+        cacheData.remove(key);
+        cacheData.put(key, value);
+        return value;
     }
 
-    @Override
-    public V getValue(K key) {
-        return this.get(key);
+    public static void main(String[] args) {
+        LRUCacheFactory<Integer, Integer> integerIntegerLRUCacheFactory = new LRUCacheFactory<>();
+        Cache<Integer, Integer> cache = integerIntegerLRUCacheFactory.createCache();
+        cache.put(1, 1);
+        cache.put(2, 2);
+        cache.put(3, 3);
+        cache.put(4, 4);
+        cache.get(1);
+        cache.put(5, 5);
+        cache.put(6, 6);
+        System.out.println(cache.get(6));
     }
 }
