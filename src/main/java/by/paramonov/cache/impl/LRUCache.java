@@ -11,7 +11,7 @@ public class LRUCache<K, V> implements Cache<K, V> {
     int cacheSize;
     Map<K, V> cacheData;
     public LRUCache(int cacheSize) {
-        cacheData = new LinkedHashMap<K, V>(cacheSize) {
+        cacheData = new LinkedHashMap<>(cacheSize) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
                 return size() > cacheSize;
