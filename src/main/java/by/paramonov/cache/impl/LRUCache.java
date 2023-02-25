@@ -1,7 +1,7 @@
 package by.paramonov.cache.impl;
 
 import by.paramonov.cache.Cache;
-import by.paramonov.factory.LRUCacheFactory;
+import by.paramonov.factory.CacheFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -36,9 +36,14 @@ public class LRUCache<K, V> implements Cache<K, V> {
         return value;
     }
 
+    @Override
+    public Map<K,V> getAll() {
+        return cacheData;
+    }
+
     public static void main(String[] args) {
-        LRUCacheFactory<Integer, Integer> integerIntegerLRUCacheFactory = new LRUCacheFactory<>();
-        Cache<Integer, Integer> cache = integerIntegerLRUCacheFactory.createCache();
+        CacheFactory<Integer, Integer> integerIntegerLRUCacheFactory = new CacheFactory<>();
+        Cache<Integer, Integer> cache = integerIntegerLRUCacheFactory.createCache("lrU");
         cache.put(1, 1);
         cache.put(2, 2);
         cache.put(3, 3);
@@ -46,6 +51,7 @@ public class LRUCache<K, V> implements Cache<K, V> {
         cache.get(1);
         cache.put(5, 5);
         cache.put(6, 6);
-        System.out.println(cache.get(6));
+        cache.put(7, 7);
+        System.out.println(cache.getAll());
     }
 }

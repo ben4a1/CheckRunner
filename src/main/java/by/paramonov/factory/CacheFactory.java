@@ -1,7 +1,22 @@
 package by.paramonov.factory;
 
-import by.paramonov.cache.Cache;
+import by.paramonov.cache.impl.LRUCache;
 
-public abstract class CacheFactory<K, V> {
-    public abstract Cache<K, V> createCache();
+public class CacheFactory<K, V> {
+    private int cacheSize = 4;
+
+    public LRUCache<K, V> createCache(String cacheAlgorithm) {
+        if ("lru".equalsIgnoreCase(cacheAlgorithm)) {
+            return new LRUCache<>(cacheSize);
+        }
+        return null;
+    }
+
+    public int getCacheSize() {
+        return cacheSize;
+    }
+
+    public void setCacheSize(int cacheSize) {
+        this.cacheSize = cacheSize;
+    }
 }
