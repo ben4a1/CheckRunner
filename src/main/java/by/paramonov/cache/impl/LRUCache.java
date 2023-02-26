@@ -2,6 +2,7 @@ package by.paramonov.cache.impl;
 
 import by.paramonov.cache.Cache;
 import by.paramonov.factory.CacheFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

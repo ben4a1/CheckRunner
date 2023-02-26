@@ -14,7 +14,7 @@ class LFUCacheTest {
     private Cache<String, Integer> lfuCache;
     @BeforeAll
     void prepare(){
-        cacheFactory = new CacheFactory<>();
+        cacheFactory = new CacheFactory<>(4);
         lfuCache = cacheFactory.createCache("LFU");
         lfuCache.put("one", 1);
         lfuCache.put("two", 2);

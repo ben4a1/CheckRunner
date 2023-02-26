@@ -1,7 +1,9 @@
 package by.paramonov.service.impl;
 
+import by.paramonov.cache.Cache;
 import by.paramonov.dao.Dao;
 import by.paramonov.entity.Customer;
+import by.paramonov.factory.CacheFactory;
 import by.paramonov.service.CustomerService;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,14 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     private final Dao<Customer> customerDao;
+    private final Cache<Long, Customer> customerCache;
+    private final CacheFactory<Long, Customer> customerCacheFactory;
 
-    public CustomerServiceImpl(Dao<Customer> customerDao) {
+    public CustomerServiceImpl(Dao<Customer> customerDao, CacheFactory<Long, Customer> cacheFactory) {
         this.customerDao = customerDao;
+        this.customerCacheFactory = cacheFactory;
+        this.customerCache = customerCacheFactory.createCache("${cache.algorithm}");
+
     }
 
     @Override

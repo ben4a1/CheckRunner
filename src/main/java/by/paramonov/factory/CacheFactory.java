@@ -3,10 +3,21 @@ package by.paramonov.factory;
 import by.paramonov.cache.Cache;
 import by.paramonov.cache.impl.LFUCache;
 import by.paramonov.cache.impl.LRUCache;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 //TODO cacheAlgorithm and cache size from app.yml
+@Component
 public class CacheFactory<K, V> {
-    private int cacheSize = 4;
+    @Value("${custom.cache.size}")
+    private int cacheSize;
+
+    public CacheFactory() {
+    }
+
+    public CacheFactory(int cacheSize) {
+        this.cacheSize = cacheSize;
+    }
 
     public Cache<K, V> createCache(String cacheAlgorithm) {
         if ("lru".equalsIgnoreCase(cacheAlgorithm)) {
