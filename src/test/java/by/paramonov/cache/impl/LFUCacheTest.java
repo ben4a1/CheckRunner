@@ -2,6 +2,7 @@ package by.paramonov.cache.impl;
 
 import by.paramonov.cache.Cache;
 import by.paramonov.factory.CacheFactory;
+import by.paramonov.factory.impl.CacheFactoryLFU;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -14,8 +15,8 @@ class LFUCacheTest {
     private Cache<String, Integer> lfuCache;
     @BeforeAll
     void prepare(){
-        cacheFactory = new CacheFactory<>(4);
-        lfuCache = cacheFactory.createCache("LFU");
+        cacheFactory = new CacheFactoryLFU<>();
+        lfuCache = cacheFactory.createCache();
         lfuCache.put("one", 1);
         lfuCache.put("two", 2);
         lfuCache.get("one");

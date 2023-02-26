@@ -13,42 +13,44 @@ import java.util.List;
 public class ProxyCustomerServiceImpl implements CustomerService {
     private final Dao<Customer> customerDao;
     private final Cache<Long, Customer> customerCache;
-    private CustomerService customerService = new CustomerServiceImpl();
-    private final CacheFactory<Long, Customer> customerCacheFactory;
+    private final CustomerService customerService = new CustomerServiceImpl();
 
     public ProxyCustomerServiceImpl(Dao<Customer> customerDao, CacheFactory<Long, Customer> customerCacheFactory) {
         this.customerDao = customerDao;
-        this.customerCacheFactory = customerCacheFactory;
-        this.customerCache = this.customerCacheFactory.createCache("lru");
+        this.customerCache = customerCacheFactory.createCache();
     }
 
     @Override
     public void addCustomer(Customer customer) {
-        customerDao.create(customer);
-        customerCache.put(customer.getId(), customer);
+        customerService.addCustomer(customer);
+//        customerCache.put(customer.getId(), customer);
     }
 
     @Override
     public void deleteCustomer(Long customerId) {
-        customerDao.delete(customerId);
-        customerCache.remove(customerId);
+        customerService.deleteCustomer(customerId);
+//        customerDao.delete(customerId);
+//        customerCache.remove(customerId);
     }
 
     @Override
     public Customer getById(Long customerId) {
-        return customerCache.contains(customerId)
-                ? customerCache.get(customerId)
-                : customerDao.read(customerId);
+        return customerService.getById(customerId);
+//        return customerCache.contains(customerId)
+//                ? customerCache.get(customerId)
+//                : customerDao.read(customerId);
     }
 
     @Override
     public void update(Customer customer) {
-        customerDao.update(customer);
-        customerCache.put(customer.getId(), customer);
+        customerService.update(customer);
+//        customerDao.update(customer);
+//        customerCache.put(customer.getId(), customer);
     }
 
     @Override
     public List<Customer> getAll() {
-        return customerDao.getAll();
+        return customerService.getAll();
+//        return customerDao.getAll();
     }
 }

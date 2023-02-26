@@ -1,8 +1,8 @@
 package by.paramonov.service.impl;
 
+import by.paramonov.dao.Dao;
 import by.paramonov.dao.impl.CustomerDao;
 import by.paramonov.entity.Customer;
-import by.paramonov.factory.CacheFactory;
 import by.paramonov.service.CustomerService;
 import org.springframework.stereotype.Service;
 
@@ -11,34 +11,34 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private final ProxyCustomerServiceImpl proxyCustomerService;
+    private final Dao<Customer> customerDao;
 
     public CustomerServiceImpl() {
-        this.proxyCustomerService = new ProxyCustomerServiceImpl(new CustomerDao(), new CacheFactory<>());
+        this.customerDao = new CustomerDao();
     }
 
     @Override
     public void addCustomer(Customer customer) {
-        proxyCustomerService.addCustomer(customer);
+        customerDao.create(customer);
     }
 
     @Override
     public void deleteCustomer(Long customerId) {
-        proxyCustomerService.deleteCustomer(customerId);
+        customerDao.delete(customerId);
     }
 
     @Override
     public Customer getById(Long customerId) {
-        return proxyCustomerService.getById(customerId);
+        return customerDao.read(customerId);
     }
 
     @Override
     public void update(Customer customer) {
-        proxyCustomerService.update(customer);
+        customerDao.update(customer);
     }
 
     @Override
     public List<Customer> getAll() {
-        return proxyCustomerService.getAll();
+        return customerDao.getAll();
     }
 }
