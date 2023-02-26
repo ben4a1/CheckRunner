@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class LFUCache<K, V> implements Cache<K, V> {
     private final int cacheSize;
-    private final Map<K, Node<V>> cacheData;
+    private final Map<K, Node<K, V>> cacheData;
     private final Node head;
     private final Node tail;
     private final int MAX = Integer.MAX_VALUE;
@@ -25,19 +25,21 @@ public class LFUCache<K, V> implements Cache<K, V> {
     public LFUCache(int cacheSize) {
         this.cacheSize = cacheSize;
         this.cacheData = new HashMap<>();
-        this.head = new Node(null, this.MAX);
-        this.tail = new Node(null, this.MIN);
+        this.head = new Node(null, null, this.MAX);
+        this.tail = new Node(null, null, this.MIN);
         head.next = tail;
         tail.prev = head;
     }
 
-    public class Node<V> {
+    public class Node<K, V> {
+        public K key;
         public V value;
         public int count;
         public Node prev;
         public Node next;
 
-        public Node(V value, int count) {
+        public Node(K key, V value, int count) {
+            this.key = key;
             this.value = value;
             this.count = count;
             this.prev = null;
@@ -66,11 +68,11 @@ public class LFUCache<K, V> implements Cache<K, V> {
             return;
         }
         if (cacheData.size() == cacheSize) {
-            cacheData.remove(tail.prev.value);
+            cacheData.remove(tail.prev.key);
             tail.prev = tail.prev.prev;
             tail.prev.next = tail;
         }
-        Node newNode = new Node(value, 0);
+        Node newNode = new Node(key, value, 0);
         cacheData.put(key, newNode);
         move(newNode);
     }
@@ -80,7 +82,7 @@ public class LFUCache<K, V> implements Cache<K, V> {
         if (!cacheData.containsKey(key)) {
             return null;
         }
-        Node<V> current = cacheData.get(key);
+        Node<K, V> current = cacheData.get(key);
         current.prev.next = current.next;
         current.next.prev = current.prev;
         current.count++;
