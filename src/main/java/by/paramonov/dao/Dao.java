@@ -1,4 +1,4 @@
-package by.paramonov.cache.dao;
+package by.paramonov.dao;
 
 import java.util.List;
 

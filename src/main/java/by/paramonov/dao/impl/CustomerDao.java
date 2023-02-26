@@ -1,6 +1,6 @@
-package by.paramonov.cache.dao.impl;
+package by.paramonov.dao.impl;
 
-import by.paramonov.cache.dao.Dao;
+import by.paramonov.dao.Dao;
 import by.paramonov.entity.Customer;
 
 import java.util.ArrayList;
