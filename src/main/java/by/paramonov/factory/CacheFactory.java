@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CacheFactory<K, V> {
     @Value("${custom.cache.size}")
-    private int cacheSize;
+    private int cacheSize = 4;
 
     public CacheFactory() {
     }

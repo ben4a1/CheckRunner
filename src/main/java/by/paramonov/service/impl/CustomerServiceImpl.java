@@ -1,6 +1,8 @@
 package by.paramonov.service.impl;
 
+import by.paramonov.dao.impl.CustomerDao;
 import by.paramonov.entity.Customer;
+import by.paramonov.factory.CacheFactory;
 import by.paramonov.service.CustomerService;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +13,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final ProxyCustomerServiceImpl proxyCustomerService;
 
-    public CustomerServiceImpl(ProxyCustomerServiceImpl proxyCustomerService) {
-        this.proxyCustomerService = proxyCustomerService;
+    public CustomerServiceImpl() {
+        this.proxyCustomerService = new ProxyCustomerServiceImpl(new CustomerDao(), new CacheFactory<>());
     }
 
     @Override

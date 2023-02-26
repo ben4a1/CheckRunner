@@ -5,7 +5,6 @@ import by.paramonov.dao.Dao;
 import by.paramonov.entity.Customer;
 import by.paramonov.factory.CacheFactory;
 import by.paramonov.service.CustomerService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
