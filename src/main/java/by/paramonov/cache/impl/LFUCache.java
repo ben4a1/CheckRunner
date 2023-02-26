@@ -92,6 +92,16 @@ public class LFUCache<K, V> implements Cache<K, V> {
     }
 
     @Override
+    public void remove(K key) {
+        cacheData.remove(key);
+    }
+
+    @Override
+    public boolean contains(K key) {
+        return cacheData.containsKey(key);
+    }
+
+    @Override
     public Map<K, V> getAll() {
         Map<K, V> map = new HashMap<>(cacheData.size());
         cacheData.forEach((k, vNode) -> map.put(k, vNode.value));
