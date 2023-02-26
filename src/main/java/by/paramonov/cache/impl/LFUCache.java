@@ -70,7 +70,7 @@ public class LFUCache<K, V> implements Cache<K, V> {
             tail.prev = tail.prev.prev;
             tail.prev.next = tail;
         }
-        Node newNode = new Node(key, 0);
+        Node newNode = new Node(value, 0);
         cacheData.put(key, newNode);
         move(newNode);
     }
