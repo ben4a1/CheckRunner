@@ -22,17 +22,19 @@ public class Product extends BaseEntity{
     private boolean isPromotion;
 
     //    private String category;
+
     public Product(long id, String description, double price) {
         super();
         this.description = description;
         this.price = price;
     }
+
     public Product(String description, double price, boolean isPromotion) {
         this.description = description;
         this.price = price;
         this.isPromotion = isPromotion;
     }
-
+    @Builder(builderMethodName = "productBuilder", setterPrefix = "with")
     public Product(long id, String description, double price, boolean isPromotion) {
         super(id);
         this.description = description;
