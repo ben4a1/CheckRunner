@@ -1,10 +1,9 @@
-package by.paramonov.service;
+package by.paramonov.service.impl;
 
 import by.paramonov.entity.Order;
 import by.paramonov.entity.Product;
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.price.PriceReader;
-import by.paramonov.service.impl.OrderServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

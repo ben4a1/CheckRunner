@@ -8,16 +8,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CacheFactoryConfig {
+public class CacheFactoryConfig<K, V> {
     @Bean(name = "lruCache")
     @ConditionalOnProperty(prefix = "cache", name = "algorithm", havingValue = "lru")
-    public CacheFactory cacheFactoryLRU() {
-        return new CacheFactoryLRU();
+    public CacheFactory<K, V> cacheFactoryLRU() {
+        return new CacheFactoryLRU<>();
     }
 
     @Bean(name = "lfuCache")
     @ConditionalOnProperty(prefix = "cache", name = "algorithm", havingValue = "lfu")
-    public CacheFactory cacheFactoryLFU() {
-        return new CacheFactoryLFU();
+    public CacheFactory<K, V> cacheFactoryLFU() {
+        return new CacheFactoryLFU<>();
     }
 }
