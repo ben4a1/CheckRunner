@@ -14,7 +14,7 @@ public class CacheFactoryLRU<K, V> implements CacheFactory<K, V> {
     @Value("${cache.size}")
     int cacheSize;
     @Bean(name = "lruCache")
-    @ConditionalOnProperty(prefix = "cache", name = "algorithm")
+    @ConditionalOnProperty(prefix = "cache", name = "algorithm", havingValue = "lru")
     @Override
     public Cache<K, V> createCache() {
         return new LRUCache<>(cacheSize);

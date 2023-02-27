@@ -11,46 +11,42 @@ import java.util.List;
 
 @Service
 public class ProxyCustomerServiceImpl implements CustomerService {
-    private final Dao<Customer> customerDao;
     private final Cache<Long, Customer> customerCache;
     private final CustomerService customerService = new CustomerServiceImpl();
 
-    public ProxyCustomerServiceImpl(Dao<Customer> customerDao, CacheFactory<Long, Customer> customerCacheFactory) {
-        this.customerDao = customerDao;
+    public ProxyCustomerServiceImpl(CacheFactory<Long, Customer> customerCacheFactory) {
         this.customerCache = customerCacheFactory.createCache();
     }
 
     @Override
     public void addCustomer(Customer customer) {
         customerService.addCustomer(customer);
-//        customerCache.put(customer.getId(), customer);
+        customerCache.put(customer.getId(), customer);
     }
 
     @Override
     public void deleteCustomer(Long customerId) {
         customerService.deleteCustomer(customerId);
-//        customerDao.delete(customerId);
-//        customerCache.remove(customerId);
+        customerCache.remove(customerId);
     }
 
     @Override
     public Customer getById(Long customerId) {
-        return customerService.getById(customerId);
-//        return customerCache.contains(customerId)
-//                ? customerCache.get(customerId)
-//                : customerDao.read(customerId);
+        if (customerCache.contains(customerId)) {
+            return customerCache.get(customerId);
+        } else {
+            return customerService.getById(customerId);
+        }
     }
 
     @Override
     public void update(Customer customer) {
         customerService.update(customer);
-//        customerDao.update(customer);
-//        customerCache.put(customer.getId(), customer);
+        customerCache.put(customer.getId(), customer);
     }
 
     @Override
     public List<Customer> getAll() {
         return customerService.getAll();
-//        return customerDao.getAll();
     }
 }

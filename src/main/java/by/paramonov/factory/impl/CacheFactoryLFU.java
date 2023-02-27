@@ -13,7 +13,7 @@ public class CacheFactoryLFU<K, V> implements CacheFactory<K, V> {
     @Value("${cache.size}")
     int cacheSize;
     @Bean(name = "lfuCache")
-    @ConditionalOnProperty(prefix = "cache", name = "algorithm")
+    @ConditionalOnProperty(prefix = "cache", name = "algorithm", havingValue = "lfu")
     @Override
     public Cache<K, V> createCache() {
         return new LFUCache<>(cacheSize);

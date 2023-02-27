@@ -11,12 +11,10 @@ import static org.assertj.core.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LFUCacheTest {
-    private CacheFactory<String, Integer> cacheFactory;
     private Cache<String, Integer> lfuCache;
     @BeforeAll
     void prepare(){
-        cacheFactory = new CacheFactoryLFU<>();
-        lfuCache = cacheFactory.createCache();
+        lfuCache = new LFUCache<>(4);
         lfuCache.put("one", 1);
         lfuCache.put("two", 2);
         lfuCache.get("one");
