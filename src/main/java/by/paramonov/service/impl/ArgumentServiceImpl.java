@@ -1,7 +1,7 @@
 package by.paramonov.service.impl;
 
 import by.paramonov.model.incomeentries.ArgumentEntry;
-import by.paramonov.parser.ArgumentParser;
+import by.paramonov.parser.argumentParser.ArgumentParser;
 import by.paramonov.service.ArgumentService;
 import org.springframework.stereotype.Service;
 

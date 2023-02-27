@@ -1,4 +1,4 @@
-package by.paramonov.parser;
+package by.paramonov.parser.argumentParser;
 
 import by.paramonov.model.incomeentries.ArgumentEntry;
 

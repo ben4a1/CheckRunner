@@ -15,8 +15,14 @@ import javax.persistence.MappedSuperclass;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class BaseEntity {
-
     @Id
     @Column(name = "id")
     private long id;
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+               "id=" + id +
+               '}';
+    }
 }

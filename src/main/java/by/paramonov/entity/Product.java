@@ -16,11 +16,8 @@ import java.util.Objects;
 @NoArgsConstructor
 public class Product extends BaseEntity{
     private String description;
-
     private double price;
-
     private boolean isPromotion;
-
     //    private String category;
     public Product(long id, String description, double price) {
         super();
@@ -50,5 +47,14 @@ public class Product extends BaseEntity{
     @Override
     public int hashCode() {
         return Objects.hash(description, price, isPromotion);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+               "description='" + description + '\'' +
+               ", price=" + price +
+               ", isPromotion=" + isPromotion +
+               "} " + super.toString();
     }
 }

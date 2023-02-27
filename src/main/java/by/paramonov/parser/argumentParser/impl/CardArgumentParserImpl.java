@@ -1,9 +1,9 @@
-package by.paramonov.parser.impl;
+package by.paramonov.parser.argumentParser.impl;
 
 import by.paramonov.model.incomeentries.ArgumentEntry;
 import by.paramonov.model.TypeOfArgument;
 import by.paramonov.model.incomeentries.CardEntry;
-import by.paramonov.parser.ArgumentParser;
+import by.paramonov.parser.argumentParser.ArgumentParser;
 import org.springframework.stereotype.Component;
 
 @Component
