@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
     testImplementation("junit:junit:3.8.2")
+    testImplementation("org.projectlombok:lombok:1.18.22")
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 

@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.*;
 
+import static by.paramonov.entity.Product.*;
 import static by.paramonov.util.TestClass.cardEntry;
 import static by.paramonov.util.TestClass.productEntry;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +28,7 @@ class OrderServiceImplTest {
     @Test
     void checkCreateOrderShouldReturnEquals() {
         List<Product> mockitoProductList = new ArrayList<>();
-        mockitoProductList.add(new Product(0, "first item", 12.4));
+        mockitoProductList.add(aProduct().withId(0).withDescription("first item").withPrice(12.4).build());
         Mockito.when(mockitoPriceReader.getPriceList()).thenReturn(mockitoProductList);
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
         argumentEntryList.add(productEntry);
