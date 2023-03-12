@@ -28,8 +28,12 @@ class OrderServiceImplTest {
     @Test
     void checkCreateOrderShouldReturnEquals() {
         List<Product> mockitoProductList = new ArrayList<>();
-        mockitoProductList.add(aProduct().withId(0).withDescription("first item").withPrice(12.4).build());
-        Mockito.when(mockitoPriceReader.getPriceList()).thenReturn(mockitoProductList);
+        mockitoProductList.add(aProduct()
+                .withId(0)
+                .withDescription("first item")
+                .withPrice(12.4).build());
+        Mockito.when(mockitoPriceReader.getPriceList())
+                .thenReturn(mockitoProductList);
         List<ArgumentEntry> argumentEntryList = new LinkedList<>();
         argumentEntryList.add(productEntry);
         argumentEntryList.add(cardEntry);

@@ -28,9 +28,20 @@ class FilePriceReaderTest {
 
     private static List<Product> getProductList() {
         return Stream.of(aProduct()
-                        .withId(1L).withDescription("Shovel").withPrice(41.57).withIsPromotion(false).build(),
-                aProduct()
-                        .withId(2L).withDescription("Vacuum_cleaner").withPrice(238.60).build(),
-                aProduct().withId(3L).withDescription("Laminate").withPrice(4.50).build()).collect(Collectors.toList());
+                                .withId(1L)
+                                .withDescription("Shovel")
+                                .withPrice(41.57)
+                                .withIsPromotion(false)
+                                .build(),
+                        aProduct()
+                                .withId(2L)
+                                .withDescription("Vacuum_cleaner")
+                                .withPrice(238.60)
+                                .build(),
+                        aProduct().withId(3L)
+                                .withDescription("Laminate")
+                                .withPrice(4.50)
+                                .build())
+                .collect(Collectors.toList());
     }
 }
