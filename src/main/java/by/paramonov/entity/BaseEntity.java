@@ -1,19 +1,17 @@
 package by.paramonov.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@SuperBuilder(toBuilder = true, setterPrefix = "with")
 public abstract class BaseEntity {
     @Id
     @Column(name = "id")

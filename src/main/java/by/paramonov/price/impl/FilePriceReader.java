@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static by.paramonov.entity.Product.*;
+
 @Component
 public class FilePriceReader implements PriceReader {
 
@@ -27,13 +29,13 @@ public class FilePriceReader implements PriceReader {
                 String[] split = scanner.nextLine().split(regexForPriceListFromFile);
                 int id = Integer.parseInt(split[0]);
                 String[] priceAndDescription = new String[]{split[1], split[2]};
-                priceListFromFile.add(new Product(id, split[2], Double.parseDouble(split[1])));
+                priceListFromFile.add(aProduct().withId(id).withDescription(split[2]).withPrice(Double.parseDouble(split[1])).build());
                 while (scanner.hasNextLine()) {
                     split = scanner.nextLine().split(regexForPriceListFromFile);
                     id = Integer.parseInt(split[0]);
                     priceAndDescription[0] = split[1];
                     priceAndDescription[1] = split[2];
-                    priceListFromFile.add(new Product(id, split[2], Double.parseDouble(split[1])));
+                    priceListFromFile.add(aProduct().withId(id).withDescription(split[2]).withPrice(Double.parseDouble(split[1])).build());
                 }
             }
             fr.close();

@@ -1,6 +1,7 @@
 package by.paramonov.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -11,19 +12,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "products")
 @AttributeOverride(name = "id", column = @Column(name = "product_id"))
-@Getter
-@Setter
 @NoArgsConstructor
-public class Product extends BaseEntity{
+@Data
+@SuperBuilder(builderMethodName = "aProduct", toBuilder = true, setterPrefix = "with")
+public class Product extends BaseEntity {
     private String description;
     private double price;
     private boolean isPromotion;
-    //    private String category;
     public Product(long id, String description, double price) {
         super();
         this.description = description;
         this.price = price;
     }
+
     public Product(String description, double price, boolean isPromotion) {
         this.description = description;
         this.price = price;
