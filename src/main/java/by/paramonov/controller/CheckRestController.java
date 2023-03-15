@@ -1,11 +1,6 @@
 package by.paramonov.controller;
 
-import by.paramonov.entity.Order;
-import by.paramonov.model.incomeentries.ArgumentEntry;
-import by.paramonov.service.impl.ArgumentServiceImpl;
-import by.paramonov.service.impl.OrderServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import by.paramonov.service.impl.RestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,29 +11,18 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v2/checks")
 public class CheckRestController {
-    private final OrderServiceImpl orderService;
-    private final ArgumentServiceImpl argumentService;
+    private final RestServiceImpl restService;
 
     @Autowired
-    public CheckRestController(OrderServiceImpl orderService, ArgumentServiceImpl argumentService) {
-        this.orderService = orderService;
-        this.argumentService = argumentService;
+    public CheckRestController(RestServiceImpl restService) {
+        this.restService = restService;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> checkOrder() {
-        List<ArgumentEntry> argumentEntries = argumentService
-                .parseInputArguments(new String[]{"1-4", "5-5", "6-2", "card-1"});
-        Order order = orderService
-                .createOrder(argumentEntries);
-        ObjectMapper om = new ObjectMapper();
-        String view = null;
-        try {
-            view = om.writeValueAsString(order);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        return new ResponseEntity<>(view, HttpStatus.OK);
+    public ResponseEntity<String> checkOrder(@RequestParam(value = "item") List<String> items,
+                                             @RequestParam(value = "card") Long cardId) {
+        String check = restService.check(items, cardId);
+        return new ResponseEntity<>(check, HttpStatus.OK);
     }
 }
